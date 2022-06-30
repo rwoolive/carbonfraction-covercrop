@@ -1,0 +1,8 @@
+"","moderators","result"
+"1","depth","F(df1 = 4, df2 = 176) = 3.168, p-val = 0.015"
+"2","ccseason","F(df1 = 4, df2 = 176) = 1.797, p-val = 0.131"
+"3","tillage","F(df1 = 2, df2 = 176) = 0.166, p-val = 0.848"
+"4","ccadded","F(df1 = 5, df2 = 176) = 0.717, p-val = 0.612"
+"5","maincrop","F(df1 = 3, df2 = 176) = 2.799, p-val = 0.042"
+"6","agCinputs","F(df1 = 1, df2 = 176) = 13.757, p-val = 0"
+"7","Temp","F(df1 = 1, df2 = 176) = 0.674, p-val = 0.413"

@@ -1,0 +1,34 @@
+
+Multivariate Meta-Analysis Model (k = 385; method: REML)
+
+   logLik   Deviance        AIC        BIC       AICc  ​ 
+ 257.7219  -515.4437  -503.4437  -479.7869  -503.2191   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed    factor 
+sigma^2.1  0.0067  0.0821    385     no    Obs.ID 
+sigma^2.2  0.0076  0.0869     48     no  StudyNum 
+
+Test for Residual Heterogeneity:
+QE(df = 381) = 1674.9058, p-val < .0001
+
+Test of Moderators (coefficients 1:4):
+F(df1 = 4, df2 = 381) = 4.5995, p-val = 0.0012
+
+Model Results:
+
+                               estimate      se    tval   df    pval    ci.lb​ 
+DispersingAgent.SodiumHex        0.0480  0.0181  2.6535  381  0.0083   0.0124 
+DispersingAgent.OtherSolution    0.0776  0.0359  2.1599  381  0.0314   0.0070 
+DispersingAgent.GlassBeads       0.0445  0.0483  0.9216  381  0.3573  -0.0504 
+DispersingAgent.Sonication       0.1322  0.0547  2.4171  381  0.0161   0.0247 
+                                ci.ub 
+DispersingAgent.SodiumHex      0.0835  ** 
+DispersingAgent.OtherSolution  0.1483   * 
+DispersingAgent.GlassBeads     0.1394     
+DispersingAgent.Sonication     0.2398   * 
+
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

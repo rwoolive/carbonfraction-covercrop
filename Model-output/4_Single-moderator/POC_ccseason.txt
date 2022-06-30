@@ -1,0 +1,29 @@
+
+Multivariate Meta-Analysis Model (k = 570; method: REML)
+
+   logLik   Deviance        AIC        BIC       AICc 
+-180.3966   360.7932   372.7932   398.8247   372.9435   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed    factor 
+sigma^2.1  0.0892  0.2986    570     no    Obs.ID 
+sigma^2.2  0.0335  0.1831     54     no  StudyNum 
+
+Test for Residual Heterogeneity:
+QE(df = 566) = 11604.7416, p-val < .0001
+
+Test of Moderators (coefficients 1:4):
+F(df1 = 4, df2 = 566) = 9.4751, p-val < .0001
+
+Model Results:
+
+                    estimate      se    tval   df    pval    ci.lb   ci.ub 
+ccseason.winter       0.1409  0.0313  4.5035  566  <.0001   0.0794  0.2023  *** 
+ccseason.spring       0.1992  0.1019  1.9549  566  0.0511  -0.0009  0.3993    . 
+ccseason.summer       0.1187  0.0694  1.7100  566  0.0878  -0.0176  0.2550    . 
+ccseason.yearround    0.2566  0.0696  3.6844  566  0.0003   0.1198  0.3933  *** 
+
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

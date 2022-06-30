@@ -1,0 +1,36 @@
+
+Multivariate Meta-Analysis Model (k = 67; method: REML)
+
+   logLik   Deviance        AIC        BIC       AICc  ​ 
+  51.2899  -102.5797   -76.5797   -50.2502   -67.9131   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed    factor 
+sigma^2.1  0.0014  0.0375     67     no    Obs.ID 
+sigma^2.2  0.0010  0.0316      5     no  StudyNum 
+
+Test for Residual Heterogeneity:
+QE(df = 56) = 66.2270, p-val = 0.1647
+
+Test of Moderators (coefficients 1:11):
+F(df1 = 11, df2 = 56) = 1.7499, p-val = 0.0859
+
+Model Results:
+
+                     estimate      se     tval  df    pval    ci.lb   ci.ub    ​ 
+depth.surface          0.6952  0.4399   1.5805  56  0.1196  -0.1860  1.5764     
+depth.subsoil          0.6314  0.4399   1.4354  56  0.1567  -0.2498  1.5126     
+depth.upperprofile     0.3999  0.2834   1.4111  56  0.1637  -0.1678  0.9675     
+toc                   -0.2968  0.1937  -1.5319  56  0.1312  -0.6848  0.0913     
+ccseason.winter        0.0939  0.0323   2.9031  56  0.0053   0.0291  0.1586  ** 
+ccadded.grass          0.0406  0.0381   1.0657  56  0.2911  -0.0357  0.1170     
+ccadded.legume         0.0023  0.0481   0.0470  56  0.9626  -0.0940  0.0986     
+ccadded.grasslegume   -0.0005  0.0380  -0.0126  56  0.9900  -0.0767  0.0757     
+maincrop.cereal       -0.1277  0.1078  -1.1847  56  0.2412  -0.3437  0.0882     
+maincrop.legume       -0.1158  0.0796  -1.4545  56  0.1514  -0.2753  0.0437     
+ag.C.inputs           -0.0466  0.0450  -1.0350  56  0.3051  -0.1367  0.0436     
+
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

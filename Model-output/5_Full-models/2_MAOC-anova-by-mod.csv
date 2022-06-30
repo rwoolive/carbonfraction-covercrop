@@ -1,0 +1,7 @@
+"","moderators","result"
+"1","depth","F(df1 = 3, df2 = 56) = 1.509, p-val = 0.222"
+"2","toc","F(df1 = 1, df2 = 56) = 2.347, p-val = 0.131"
+"3","ccseason","F(df1 = 1, df2 = 56) = 8.428, p-val = 0.005"
+"4","ccadded","F(df1 = 3, df2 = 56) = 0.478, p-val = 0.699"
+"5","maincrop","F(df1 = 2, df2 = 56) = 1.255, p-val = 0.293"
+"6","agCinputs","F(df1 = 1, df2 = 56) = 1.071, p-val = 0.305"

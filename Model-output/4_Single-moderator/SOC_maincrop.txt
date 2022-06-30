@@ -1,0 +1,30 @@
+
+Multivariate Meta-Analysis Model (k = 518; method: REML)
+
+   logLik   Deviance        AIC        BIC       AICc 
+ 377.5752  -755.1504  -741.1504  -711.4685  -740.9286   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed    factor 
+sigma^2.1  0.0059  0.0766    518     no    Obs.ID 
+sigma^2.2  0.0051  0.0716     50     no  StudyNum 
+
+Test for Residual Heterogeneity:
+QE(df = 513) = 1771.6047, p-val < .0001
+
+Test of Moderators (coefficients 1:5):
+F(df1 = 5, df2 = 513) = 6.7358, p-val < .0001
+
+Model Results:
+
+                       estimate      se    tval   df    pval    ci.lb   ci.ub 
+maincrop.cereal          0.0564  0.0184  3.0705  513  0.0023   0.0203  0.0926   ** 
+maincrop.legume          0.0989  0.0260  3.8050  513  0.0002   0.0478  0.1500  *** 
+maincrop.cereallegume    0.0085  0.0206  0.4144  513  0.6788  -0.0319  0.0490      
+maincrop.otherrowcrop    0.1277  0.0554  2.3048  513  0.0216   0.0189  0.2366    * 
+maincrop.perennial       0.0890  0.0404  2.2025  513  0.0281   0.0096  0.1683    * 
+
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

@@ -1,0 +1,29 @@
+
+Multivariate Meta-Analysis Model (k = 195; method: REML)
+
+   logLik   Deviance        AIC        BIC       AICc  ​ 
+ 144.8237  -289.6475  -277.6475  -258.1338  -277.1909   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed    factor 
+sigma^2.1  0.0039  0.0627    195     no    Obs.ID 
+sigma^2.2  0.0065  0.0808     24     no  StudyNum 
+
+Test for Residual Heterogeneity:
+QE(df = 191) = 1022.7585, p-val < .0001
+
+Test of Moderators (coefficients 1:4):
+F(df1 = 4, df2 = 191) = 2.3216, p-val = 0.0583
+
+Model Results:
+
+                     estimate      se     tval   df    pval    ci.lb   ci.ub    ​ 
+soilorder.Alfisols     0.0046  0.0585   0.0785  191  0.9375  -0.1109  0.1201     
+soilorder.Oxisols     -0.0114  0.0524  -0.2182  191  0.8275  -0.1148  0.0919     
+soilorder.Mollisols    0.0397  0.0269   1.4742  191  0.1421  -0.0134  0.0928     
+soilorder.Ultisols     0.1351  0.0508   2.6569  191  0.0086   0.0348  0.2354  ** 
+
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

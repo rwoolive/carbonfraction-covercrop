@@ -1,0 +1,27 @@
+
+Multivariate Meta-Analysis Model (k = 195; method: REML)
+
+   logLik   Deviance        AIC        BIC       AICc  ​ 
+ 141.9258  -283.8516  -275.8516  -262.8008  -275.6388   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed    factor 
+sigma^2.1  0.0040  0.0635    195     no    Obs.ID 
+sigma^2.2  0.0073  0.0857     24     no  StudyNum 
+
+Test for Residual Heterogeneity:
+QE(df = 193) = 1114.5133, p-val < .0001
+
+Test of Moderators (coefficients 1:2):
+F(df1 = 2, df2 = 193) = 1.5428, p-val = 0.2164
+
+Model Results:
+
+               estimate      se    tval   df    pval    ci.lb   ci.ub   ​ 
+depth.surface    0.0317  0.0181  1.7534  193  0.0811  -0.0040  0.0673  . 
+depth.subsoil    0.0186  0.0225  0.8261  193  0.4098  -0.0258  0.0629    
+
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

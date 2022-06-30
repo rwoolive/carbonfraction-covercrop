@@ -1,0 +1,29 @@
+
+Multivariate Meta-Analysis Model (k = 570; method: REML)
+
+   logLik   Deviance        AIC        BIC       AICc 
+-185.9280   371.8559   383.8559   409.8875   384.0062   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed    factor 
+sigma^2.1  0.0909  0.3014    570     no    Obs.ID 
+sigma^2.2  0.0347  0.1864     54     no  StudyNum 
+
+Test for Residual Heterogeneity:
+QE(df = 566) = 12083.2585, p-val < .0001
+
+Test of Moderators (coefficients 1:4):
+F(df1 = 4, df2 = 566) = 6.6354, p-val < .0001
+
+Model Results:
+
+                             estimate      se    tval   df    pval    ci.lb   ci.ub 
+SoilCollectionSeason.winter    0.2679  0.0806  3.3241  566  0.0009   0.1096  0.4262  *** 
+SoilCollectionSeason.spring    0.1474  0.0440  3.3513  566  0.0009   0.0610  0.2338  *** 
+SoilCollectionSeason.summer    0.1778  0.0545  3.2642  566  0.0012   0.0708  0.2849   ** 
+SoilCollectionSeason.fall      0.0996  0.0584  1.7075  566  0.0883  -0.0150  0.2142    . 
+
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

@@ -1,0 +1,45 @@
+
+Multivariate Meta-Analysis Model (k = 255; method: REML)
+
+   logLik   Deviance        AIC        BIC       AICc  ​ 
+ 193.5282  -387.0565  -343.0565  -266.9456  -338.2829   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed    factor 
+sigma^2.1  0.0043  0.0655    255     no    Obs.ID 
+sigma^2.2  0.0013  0.0354     22     no  StudyNum 
+
+Test for Residual Heterogeneity:
+QE(df = 235) = 411.7371, p-val < .0001
+
+Test of Moderators (coefficients 1:20):
+F(df1 = 20, df2 = 235) = 4.3474, p-val < .0001
+
+Model Results:
+
+                             estimate      se     tval   df    pval    ci.lb    ci.ub    ​ 
+depth.surface                 -0.0587  0.0501  -1.1712  235  0.2427  -0.1574   0.0400     
+depth.subsoil                 -0.1198  0.0504  -2.3766  235  0.0183  -0.2190  -0.0205   * 
+depth.upperprofile            -0.0489  0.0539  -0.9077  235  0.3650  -0.1551   0.0573     
+depth.lowerprofile            -0.0827  0.0585  -1.4131  235  0.1590  -0.1979   0.0326     
+ccseason.winter                0.0465  0.0346   1.3435  235  0.1804  -0.0217   0.1148     
+ccseason.spring                0.0454  0.0419   1.0848  235  0.2791  -0.0371   0.1279     
+ccseason.summer                0.1420  0.0693   2.0475  235  0.0417   0.0054   0.2786   * 
+ccseason.yearround            -0.0805  0.0833  -0.9662  235  0.3349  -0.2446   0.0836     
+tillage.conventional           0.0546  0.0751   0.7271  235  0.4679  -0.0934   0.2026     
+tillage.reducednotill          0.0497  0.0734   0.6765  235  0.4994  -0.0950   0.1943     
+ccadded.grass                 -0.0022  0.0515  -0.0424  235  0.9662  -0.1036   0.0993     
+ccadded.legume                 0.0608  0.0535   1.1366  235  0.2569  -0.0446   0.1662     
+ccadded.grasslegume           -0.0074  0.0541  -0.1366  235  0.8915  -0.1139   0.0992     
+ccadded.brassica              -0.0180  0.0559  -0.3226  235  0.7473  -0.1283   0.0922     
+ccadded.grasslegumebrassica    0.0004  0.0532   0.0072  235  0.9943  -0.1043   0.1051     
+maincrop.cereal               -0.0210  0.1104  -0.1902  235  0.8493  -0.2386   0.1965     
+maincrop.legume                0.0620  0.1124   0.5520  235  0.5815  -0.1593   0.2834     
+maincrop.cereallegume          0.0186  0.1025   0.1816  235  0.8560  -0.1834   0.2207     
+ag.C.inputs                    0.0449  0.0147   3.0445  235  0.0026   0.0158   0.0739  ** 
+Temp                          -0.0045  0.0057  -0.7853  235  0.4330  -0.0157   0.0068     
+
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+

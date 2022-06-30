@@ -1,0 +1,29 @@
+
+Multivariate Meta-Analysis Model (k = 467; method: REML)
+
+   logLik   Deviance        AIC        BIC       AICc  ​ 
+-160.0386   320.0772   332.0772   356.9035   332.2614   
+
+Variance Components:
+
+            estim    sqrt  nlvls  fixed    factor 
+sigma^2.1  0.0933  0.3055    467     no    Obs.ID 
+sigma^2.2  0.0369  0.1921     52     no  StudyNum 
+
+Test for Residual Heterogeneity:
+QE(df = 463) = 10106.8879, p-val < .0001
+
+Test of Moderators (coefficients 1:4):
+F(df1 = 4, df2 = 463) = 6.2154, p-val < .0001
+
+Model Results:
+
+                        estimate      se     tval   df    pval    ci.lb   ci.ub     ​ 
+Continent.Asia            0.0668  0.1254   0.5329  463  0.5943  -0.1796  0.3133      
+Continent.Europe         -0.0172  0.1390  -0.1235  463  0.9018  -0.2903  0.2560      
+Continent.NorthAmerica    0.0734  0.0595   1.2329  463  0.2182  -0.0436  0.1904      
+Continent.SouthAmerica    0.2199  0.0458   4.8002  463  <.0001   0.1299  0.3100  *** 
+
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
