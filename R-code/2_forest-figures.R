@@ -293,7 +293,7 @@ plots1 <- ggplot(data=POC_suppcat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, 
   annotate(geom= "text", x=SOC_suppcat1$uci.mpc+4, y=c(SOC_suppcat1$index-dist), 
            hjust = 0, size=2, label=paste0(SOC_suppcat1$nobs, " / ", SOC_suppcat1$nstudy))
 
-jpeg("Figures/S1_.jpeg", width=4.5, height=7, units="in",res=600)
+jpeg("Figures/A.7_soil order-continent-sampling season.jpeg", width=4.5, height=7, units="in",res=600)
 plots1
 dev.off()
 
@@ -350,7 +350,7 @@ plots2 <- ggplot(data=POC_suppcat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, 
   annotate(geom= "text", x=SOC_suppcat2$uci.mpc+4, y=c(SOC_suppcat2$index-dist), 
            hjust = 0, size=2, label=paste0(SOC_suppcat2$nobs, " / ", SOC_suppcat2$nstudy))
 
-jpeg("Figures/S2_.jpeg", width=5, height=5.5, units="in",res=600)
+jpeg("Figures/A.3_method-dispersing agent-measurement.jpeg", width=5, height=5.5, units="in",res=600)
 plots2
 dev.off()
 

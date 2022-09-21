@@ -24,12 +24,12 @@ dat <- dat_SOC
 mod <- rma.mv(logRR, var, mods = ~ var, random = list(~ 1 | Obs.ID, ~ 1 | StudyNum), tdist=TRUE, data=dat)
 sink(file = "Model-output/6_Publication-bias/eggers_SOC.txt"); summary(mod); sink(file = NULL)
 
-png(height=300, width=300, "Figures/S2_histogram POC.png")
-hist(dat_POC$logRR, xlab=expression(paste("POC"[CC])), main=""); title("A", adj=0, line=0.5); dev.off()
-png(height=300, width=300, "Figures/S2_histogram MAOC.png")
-hist(dat_MAOC$logRR, xlab=expression(paste("MAOC"[CC])), main=""); title("B", adj=0, line=0.5); dev.off()
-png(height=300, width=300, "Figures/S2_histogram SOC.png")
-hist(dat_SOC$logRR, xlab=expression(paste("SOC"[CC])), main=""); title("C", adj=0, line=0.5); dev.off()
+# png(height=300, width=300, "Figures/S2_histogram POC.png")
+# hist(dat_POC$logRR, xlab=expression(paste("POC"[CC])), main=""); title("A", adj=0, line=0.5); dev.off()
+# png(height=300, width=300, "Figures/S2_histogram MAOC.png")
+# hist(dat_MAOC$logRR, xlab=expression(paste("MAOC"[CC])), main=""); title("B", adj=0, line=0.5); dev.off()
+# png(height=300, width=300, "Figures/S2_histogram SOC.png")
+# hist(dat_SOC$logRR, xlab=expression(paste("SOC"[CC])), main=""); title("C", adj=0, line=0.5); dev.off()
 
 
 

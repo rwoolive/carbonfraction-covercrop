@@ -241,6 +241,6 @@ figure3 <- ggpubr::ggarrange(figure0, figure1, figure2, heights = c(0.8, 1, 1),
                              ncol = 1, nrow = 3)
 figure3
 #ggsave("Figures/S2_histogram by rv type and unit.jpeg", units="in", height=8, width=10, res=600)
-jpeg("Figures/S2_histogram by rv type and unit.jpeg", width=10, height=8, units="in",res=600)
+jpeg("Figures/A.2_histogram by rv type and unit.jpeg", width=10, height=8, units="in",res=600)
 figure3
 dev.off()

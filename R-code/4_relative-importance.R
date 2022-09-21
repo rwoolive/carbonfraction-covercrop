@@ -116,7 +116,7 @@ allt_SOC2 <- c("Soil depth", "Cover crop season", "Aboveground C inputs",
 
 # Plot
 
-jpeg("Figures/5_Variable-importance.jpeg", width = 2000, height = 1200, res=300)
+jpeg("Figures/4_Variable-importance.jpeg", width = 2000, height = 1200, res=300)
 
 par(oma=c(0,12,0,1), mfrow=c(1,3), mar=c(3,1,3,1))
 

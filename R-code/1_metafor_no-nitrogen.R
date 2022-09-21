@@ -211,7 +211,7 @@ SOC_depth <- ggplot()+
 depthfig <- ggpubr::ggarrange(POC_depth, MAOC_depth, SOC_depth, ncol = 1, nrow = 3)
 depthfig
 #ggsave("Figures/S5_depth distribution by obsevrvation.png", units="in", height=8, width=8)
-jpeg("Figures/S5_depth distribution by obsevrvation.jpeg", width=8, height=8, units="in",res=600)
+jpeg("Figures/A.8_depth distribution by obsevrvation.jpeg", width=8, height=8, units="in",res=600)
 depthfig
 dev.off()
 
@@ -395,7 +395,7 @@ MAOC_clay <- ggpubr::ggarrange(MAOC_clay_control, MAOC_clay_trt, ncol = 2, nrow 
 MAOC_texture <- ggpubr::ggarrange(MAOC_sand, MAOC_silt, MAOC_clay, ncol = 1, nrow = 3)
 MAOC_texture
 #ggsave("Figures/S6_maoc by texture.png", units="in", height=8, width=8)
-jpeg("Figures/S6_maoc by texture.jpeg", width=8, height=8, units="in",res=600)
+jpeg("Figures/A.9_maoc by texture.jpeg", width=8, height=8, units="in",res=600)
 MAOC_texture
 dev.off()
 

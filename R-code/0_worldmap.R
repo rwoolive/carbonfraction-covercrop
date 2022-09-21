@@ -85,9 +85,9 @@ my_map <- ggplot() +
   scale_size_continuous(name = "Observations", range = c(0.3,6))
 my_map
 
-png("Figures/1_WorldMap_ggmap_nobs.png", height=2000, width=4000,  units="px", res=600, bg = "transparent")
-my_map
-dev.off()
+# png("Figures/1_WorldMap_ggmap_nobs.png", height=2000, width=4000,  units="px", res=600, bg = "transparent")
+# my_map
+# dev.off()
 
 
 

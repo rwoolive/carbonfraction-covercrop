@@ -518,9 +518,9 @@ p <- ggplot(dat, aes(x=id, y=r2, fill=resp)) + # Note that id is a factor. If x 
 p
 
 
-jpeg("Figures/4_r2s.jpeg", width=4.2, height=4.2, units="in",res=600)
-p
-dev.off()
+# jpeg("Figures/4_r2s.jpeg", width=4.2, height=4.2, units="in",res=600)
+# p
+# dev.off()
 
 
 
@@ -708,7 +708,7 @@ p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, siz
 p_Prec
 
 
-jpeg("Figures/S2_POC regressions.jpeg", width=12, height=14, units="in",res=600)
+jpeg("Figures/A.4_POC regressions.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
@@ -899,7 +899,7 @@ p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, siz
 p_Prec
 
 
-jpeg("Figures/S3_MAOC regressions.jpeg", width=12, height=14, units="in",res=600)
+jpeg("Figures/A.5_MAOC regressions.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
@@ -1085,7 +1085,7 @@ p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, siz
 p_Prec
 
 
-jpeg("Figures/S4_SOC regressions.jpeg", width=12, height=14, units="in",res=600)
+jpeg("Figures/A.6_SOC regressions.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
