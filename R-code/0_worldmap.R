@@ -99,22 +99,26 @@ dev.off()
 
 
 # create plot for number of studies
+# colors uses: sprirenggreen4, red, springgreen, turquoise1
 sf_use_s2(FALSE)
 my_map <- ggplot() +
   geom_sf(data = world, inherit.aes = F) +
-  geom_sf(data = world, fill="white", alpha=0.2, colour = "gray75") +
-  geom_point(data = locdat, aes(x = long, y = lat, size=nstudy),  shape = 21, fill = "darkorange3", alpha=0.5) +
+  geom_sf(data = world, fill="white", alpha=0.2, colour = "gray65", size=0.55) +
+  geom_point(data = locdat[which(locdat$nstudy>1),], aes(x = long, y = lat, size=nstudy),  shape = 21, fill = "red", alpha=0.75) +
+  geom_point(data = locdat[which(locdat$nstudy<2),], aes(x = long, y = lat, size=nstudy),  shape = 21, fill = "red", alpha=0.75) +
   theme(legend.position = c(0.8, 0.2)) +
   labs(x="Longitude", y="Latitude") +
   theme_bw() +
+  theme(axis.text.x=element_text(colour="black")) +
   coord_sf(expand = F) +
   scale_x_continuous(breaks = seq(-180, 180, by=60)) +
   scale_y_continuous(breaks = seq(-90, 90, by = 30)) +
   scale_size_continuous(name = "Studies", breaks = c(1,2,3), range = c(1,3))
 my_map
 
-png("Figures/1_WorldMap_ggmap_nstudy.png", height=2000, width=4000,  units="px", res=600, bg = "transparent")
+jpeg("Figures/1_WorldMap_ggmap_nstudy.jpeg", height=2000, width=4000,  units="px", res=600, bg = "transparent")
 my_map
+dev.off()
 dev.off()
 
 

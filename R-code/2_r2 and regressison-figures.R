@@ -518,7 +518,7 @@ p <- ggplot(dat, aes(x=id, y=r2, fill=resp)) + # Note that id is a factor. If x 
 p
 
 
-png("Figures/4_r2s.png", width=4.2, height=4.2, units="in",res=300)
+jpeg("Figures/4_r2s.jpeg", width=4.2, height=4.2, units="in",res=600)
 p
 dev.off()
 
@@ -703,12 +703,12 @@ xmin_Prec <- min(na.omit(rawdat$Prec))
 xmax_Prec <- max(na.omit(rawdat$Prec))
 p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_Prec], linetype=lty_Prec, aes(x = xmin_Prec, xend = xmax_Prec, y = m_Prec*xmin_Prec + b_Prec , yend = m_Prec*xmax_Prec + b_Prec))  +
-  annotate(geom="text", x=xmin_Prec, y=ymax ,hjust=0, label=paste("y = ", m_Prec, "*x", "+", b_Prec)) +  labs(x="Annual precipitation (%)", y="Log reponse ratio") +
+  annotate(geom="text", x=xmin_Prec, y=ymax ,hjust=0, label=paste("y = ", m_Prec, "*x", "+", b_Prec)) +  labs(x="Annual precipitation (mm)", y="Log reponse ratio") +
   annotate(geom="text", x=xmin_Prec, y=ymax-0.1*ymax ,hjust=0, label=paste("R2 =", r_Prec)) + theme_bw()
 p_Prec
 
 
-png("Figures/S2_POC regressions.png", width=12, height=14, units="in",res=300)
+jpeg("Figures/S2_POC regressions.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
@@ -894,12 +894,12 @@ xmin_Prec <- min(na.omit(rawdat$Prec))
 xmax_Prec <- max(na.omit(rawdat$Prec))
 p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_Prec], linetype=lty_Prec, aes(x = xmin_Prec, xend = xmax_Prec, y = m_Prec*xmin_Prec + b_Prec , yend = m_Prec*xmax_Prec + b_Prec))  +
-  annotate(geom="text", x=xmin_Prec, y=ymax ,hjust=0, label=paste("y = ", m_Prec, "*x", "+", b_Prec)) +  labs(x="Annual precipitation (%)", y="Log reponse ratio") +
+  annotate(geom="text", x=xmin_Prec, y=ymax ,hjust=0, label=paste("y = ", m_Prec, "*x", "+", b_Prec)) +  labs(x="Annual precipitation (mm)", y="Log reponse ratio") +
   annotate(geom="text", x=xmin_Prec, y=ymax-0.1*ymax ,hjust=0, label=paste("R2 =", r_Prec)) + theme_bw()
 p_Prec
 
 
-png("Figures/S3_MAOC regressions.png", width=12, height=14, units="in",res=300)
+jpeg("Figures/S3_MAOC regressions.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
@@ -1080,12 +1080,12 @@ xmin_Prec <- min(na.omit(rawdat$Prec))
 xmax_Prec <- max(na.omit(rawdat$Prec))
 p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_Prec], linetype=lty_Prec, aes(x = xmin_Prec, xend = xmax_Prec, y = m_Prec*xmin_Prec + b_Prec , yend = m_Prec*xmax_Prec + b_Prec))  +
-  annotate(geom="text", x=xmin_Prec, y=ymax ,hjust=0, label=paste("y = ", m_Prec, "*x", "+", b_Prec)) +  labs(x="Annual precipitation (%)", y="Log reponse ratio") +
+  annotate(geom="text", x=xmin_Prec, y=ymax ,hjust=0, label=paste("y = ", m_Prec, "*x", "+", b_Prec)) +  labs(x="Annual precipitation (mm)", y="Log reponse ratio") +
   annotate(geom="text", x=xmin_Prec, y=ymax-0.2*ymax ,hjust=0, label=paste("R2 =", r_Prec)) + theme_bw()
 p_Prec
 
 
-png("Figures/S4_SOC regressions.png", width=12, height=14, units="in",res=300)
+jpeg("Figures/S4_SOC regressions.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,

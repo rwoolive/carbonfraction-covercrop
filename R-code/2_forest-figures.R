@@ -131,24 +131,31 @@ pcol <- "olivedrab4"
 mcol <- "orange4"
 scol <- "black"
 xmaxim <- 85
+texcol <- "black"
+modsize<-3
+
+POC_maincat1$signif <- rep(1, dim(POC_maincat1)[1]); POC_maincat1$signif[which(POC_maincat1$lci<0)] <- 0; POC_maincat1$signif <- as.factor(POC_maincat1$signif)
+MAOC_maincat1$signif <- rep(1, dim(MAOC_maincat1)[1]); MAOC_maincat1$signif[which(MAOC_maincat1$lci<0)] <- 0; MAOC_maincat1$signif <- as.factor(MAOC_maincat1$signif)
+SOC_maincat1$signif <- rep(1, dim(SOC_maincat1)[1]); SOC_maincat1$signif[which(SOC_maincat1$lci<0)] <- 0; SOC_maincat1$signif <- as.factor(SOC_maincat1$signif)
+
 
 plot2 <- ggplot(data=POC_maincat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
   # add dividers
-  geom_vline(xintercept=0, color='black', linetype='dashed', alpha=.5) +
-  geom_hline(yintercept=c(8.5, 6.5, 2.5), color='black', linetype='solid', alpha=.5) +
+  geom_vline(xintercept=0, color='black', linetype='dashed', alpha=1, size=0.25) +
+  geom_hline(yintercept=c(8.5, 6.5, 2.5), color='black', linetype='solid', alpha=1, size=0.25) +
   # add POC responses
-  geom_point(color=pcol) +
-  geom_errorbarh(height=.1, color=pcol, aes(y=index+dist)) +
+  geom_errorbarh(height=.1, color="black", aes(y=index+dist), size=0.25) +
+  geom_point(fill=pcol, shape=21, size=3) +
   # add MAOC responses
-  geom_point(data=MAOC_maincat1, color=mcol, aes(y=index, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
-  geom_errorbarh(data = MAOC_maincat1, height=.1, color=mcol, aes(y=index)) +
+  geom_errorbarh(data = MAOC_maincat1, height=.1, color="black", aes(y=index), size=0.25) +
+  geom_point(data=MAOC_maincat1, fill=mcol, aes(y=index, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
   # add SOC responses
-  geom_point(data=SOC_maincat1, color=scol, aes(y=index-dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
-  geom_errorbarh(data = SOC_maincat1, height=.1, color=scol, aes(y=index-dist)) +
+  geom_errorbarh(data = SOC_maincat1, height=.1, color="black", aes(y=index-dist), size=0.25) +
+  geom_point(data=SOC_maincat1, fill=scol, aes(y=index-dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
   # specify axes
   scale_y_continuous(name = "", breaks=c(9.3, 9, 8.7, 8:1), expand = c(0, 0),
                      labels=c("POC", "MAOC", "SOC", 
-                              "Surface (0-10 cm)", 
+                              "Surface soil (0-10 cm)", 
                               "Subsoil (10-30 cm)", 
                               "Winter", "Spring", "Summer", "Year-round", 
                               "Conventional", "Reduced or no-till"), # labels based on POC_maincat1$level
@@ -161,10 +168,11 @@ plot2 <- ggplot(data=POC_maincat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, x
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.5), 
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
-        axis.ticks.x = element_line(size = 0.4)) +
+        plot.margin = margin(0,0.1,0.1,0, "cm"),
+        axis.ticks.x = element_line(size = 0.4), axis.text=element_text(colour="black"), axis.title=element_text(size=10)) +
   # add labels for moderators
   annotate(geom= "text", x=rep(xmaxim,4), y=c(9, 7.5, 4.5, 1.5), hjust = 1,vjust=0.5,fontface =3,
-           label=c("Overall", "Depth", "Cover\ncrop\nseason", "Tillage")) +
+           label=c("Overall", "Depth", "Cover crop\nseason", "Tillage"), size=modsize) +
   # add sample sizes
   annotate(geom= "text", x=POC_maincat1$uci.mpc+4, y=c(9:1+dist), 
            hjust = 0, size=2.25, label=paste0(POC_maincat1$nobs, " / ", POC_maincat1$nstudy)) +
@@ -173,7 +181,7 @@ plot2 <- ggplot(data=POC_maincat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, x
   annotate(geom= "text", x=SOC_maincat1$uci.mpc+4, y=c(9:1-dist), 
            hjust = 0, size=2.25, label=paste0(SOC_maincat1$nobs, " / ", SOC_maincat1$nstudy))
 
-png("Figures/2_overall_depth_season_tillage.png", width=5, height=6, units="in",res=300)
+jpeg("Figures/2_overall_depth_season_tillage.jpeg", width=5, height=6.2, units="in",res=600)
 plot2
 dev.off()
 
@@ -188,17 +196,17 @@ xmaxim <- 85
 
 plot3 <- ggplot(data=POC_maincat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
   # add dividers
-  geom_vline(xintercept=0, color='black', linetype='dashed', alpha=.5) +
-  geom_hline(yintercept=c(5.5), color='black', linetype='solid', alpha=.5) +
+  geom_vline(xintercept=0, color='black', linetype='dashed', alpha=1, size=0.25) +
+  geom_hline(yintercept=c(5.5), color='black', linetype='solid', alpha=1, size=0.25) +
   # add POC responses
-  geom_point(color=pcol) +
-  geom_errorbarh(height=.1, color=pcol, aes(y=index+dist)) +
+  geom_errorbarh(height=.1, color="black", aes(y=index+dist), size=0.25) +
+  geom_point(fill=pcol, shape=21, size=3) +
   # add MAOC responses
-  geom_point(data=MAOC_maincat2, color=mcol, aes(y=index, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
-  geom_errorbarh(data = MAOC_maincat2, height=.1, color=mcol, aes(y=index)) +
+  geom_errorbarh(data = MAOC_maincat2, height=.1, color="black", aes(y=index), size=0.25) +
+  geom_point(data=MAOC_maincat2, fill=mcol, aes(y=index, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
   # add SOC responses
-  geom_point(data=SOC_maincat2, color=scol, aes(y=index-dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
-  geom_errorbarh(data = SOC_maincat2, height=.1, color=scol, aes(y=index-dist)) +
+  geom_errorbarh(data = SOC_maincat2, height=.1, color="black", aes(y=index-0.25), size=0.25) +
+  geom_point(data=SOC_maincat2, fill=scol, aes(y=index-0.25, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
   # specify axes
   scale_y_continuous(name = "", breaks=c(10:1), expand = c(0, 0),
                      labels=c("Grass", "Legume", "Grass + legume",
@@ -214,10 +222,11 @@ plot3 <- ggplot(data=POC_maincat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, x
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.5), 
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
-        axis.ticks.x = element_line(size = 0.4)) +
+        plot.margin = margin(0,0.1,0.1,0, "cm"),
+        axis.ticks.x = element_line(size = 0.4), axis.text=element_text(colour="black"), axis.title=element_text(size=10)) +
   # add labels for moderators
   annotate(geom= "text", x=rep(xmaxim,2), y=c(8,3), hjust = 1,vjust=0.5, fontface =3,
-           label=c("Cover\ncrop\ntype", "Cropping\nsystem")) +
+           label=c("Cover crop\ntype", "Cropping\nsystem"), size=modsize) +
   # add sample sizes
   annotate(geom= "text", x=POC_maincat2$uci.mpc+4, y=c(POC_maincat2$index+dist), 
            hjust = 0, size=2.25, label=paste0(POC_maincat2$nobs, " / ", POC_maincat2$nstudy)) +
@@ -226,7 +235,7 @@ plot3 <- ggplot(data=POC_maincat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, x
   annotate(geom= "text", x=SOC_maincat2$uci.mpc+4, y=c(SOC_maincat2$index-dist), 
            hjust = 0, size=2.25, label=paste0(SOC_maincat2$nobs, " / ", SOC_maincat2$nstudy))
 
-png("Figures/3_maincrop covercrop.png", width=5, height=6, units="in",res=300)
+jpeg("Figures/3_maincrop covercrop.jpeg", width=5, height=6.4, units="in",res=600)
 plot3
 dev.off()
 
@@ -236,27 +245,27 @@ dev.off()
 
 
 # Supplementary figures
-dist <- 0.2
+dist <- 0.275
 pcol <- "olivedrab4"
 mcol <- "orange4"
 scol <- "black"
-xmaxim <- 95
+xmaxim <- 90
 
 
 
 plots1 <- ggplot(data=POC_suppcat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
   # add dividers
-  geom_vline(xintercept=0, color='black', linetype='dashed', alpha=.5) +
-  geom_hline(yintercept=c(4.5, 8.5), color='black', linetype='solid', alpha=.5) +
+  geom_vline(xintercept=0, color='black', linetype='dashed', alpha=1, size=0.25) +
+  geom_hline(yintercept=c(4.5, 8.5), color='black', linetype='solid', alpha=1, size=0.25) +
   # add POC responses
-  geom_point(color=pcol) +
-  geom_errorbarh(height=.1, color=pcol, aes(y=index+dist)) +
+  geom_errorbarh(height=.15, color='black', aes(y=index+dist), size=0.25) +
+  geom_point(fill=pcol, shape=21, size=3) +
   # add MAOC responses
-  geom_point(data=MAOC_suppcat1, color=mcol, aes(y=index, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
-  geom_errorbarh(data = MAOC_suppcat1, height=.1, color=mcol, aes(y=index)) +
+  geom_errorbarh(data = MAOC_suppcat1, height=.15, color='black', aes(y=index), size=0.25) +
+  geom_point(data=MAOC_suppcat1, fill=mcol, aes(y=index, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
   # add SOC responses
-  geom_point(data=SOC_suppcat1, color=scol, aes(y=index-dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
-  geom_errorbarh(data = SOC_suppcat1, height=.1, color=scol, aes(y=index-dist)) +
+  geom_errorbarh(data = SOC_suppcat1, height=.15, color='black', aes(y=index-dist), size=0.25) +
+  geom_point(data=SOC_suppcat1, fill=scol, aes(y=index-dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
   # specify axes
   scale_y_continuous(name = "", breaks=c(13:1), expand = c(0, 0), 
                      labels=c("Alfisols", "Oxisols", "Mollisols", "Ultisols", "Inceptisols",
@@ -271,10 +280,11 @@ plots1 <- ggplot(data=POC_suppcat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, 
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.5), 
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
-        axis.ticks.x = element_line(size = 0.4)) +
+        plot.margin = margin(0,0.1,0.1,0, "cm"),
+        axis.ticks.x = element_line(size = 0.4), axis.text=element_text(colour="black"), axis.title=element_text(size=10)) +
   # add labels for moderators     2.5, 7.5, 9.5, 13.5,17.5
   annotate(geom= "text", x=rep(xmaxim,3), y=c(11, 6.5, 2.5), hjust = 1,vjust=0.5, fontface =3,
-           label=c("Soil\ntype", "Continent", "Soil\ncollection\nseason")) +
+           label=c("Soil type", "Continent", "Soil collection\nseason"), size=modsize) +
   # add sample sizes
   annotate(geom= "text", x=POC_suppcat1$uci.mpc+4, y=c(POC_suppcat1$index+dist), 
            hjust = 0, size=2, label=paste0(POC_suppcat1$nobs, " / ", POC_suppcat1$nstudy)) +
@@ -283,7 +293,7 @@ plots1 <- ggplot(data=POC_suppcat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, 
   annotate(geom= "text", x=SOC_suppcat1$uci.mpc+4, y=c(SOC_suppcat1$index-dist), 
            hjust = 0, size=2, label=paste0(SOC_suppcat1$nobs, " / ", SOC_suppcat1$nstudy))
 
-png("Figures/S1_.png", width=4.5, height=6, units="in",res=300)
+jpeg("Figures/S1_.jpeg", width=4.5, height=7, units="in",res=600)
 plots1
 dev.off()
 
@@ -292,7 +302,7 @@ dev.off()
 
 
 # supplementary fig
-dist <- 0.2
+dist <- 0.225
 pcol <- "olivedrab4"
 mcol <- "orange4"
 scol <- "black"
@@ -302,17 +312,17 @@ xmaxim <- 85
 
 plots2 <- ggplot(data=POC_suppcat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
   # add dividers
-  geom_vline(xintercept=0, color='black', linetype='dashed', alpha=.5) +
-  geom_hline(yintercept=c(2.5, 6.5), color='black', linetype='solid', alpha=.5) +
+  geom_vline(xintercept=0, color='black', linetype='dashed', alpha=1, size=0.25) +
+  geom_hline(yintercept=c(2.5, 6.5), color='black', linetype='solid', alpha=1, size=0.25) +
   # add POC responses
-  geom_point(color=pcol) +
-  geom_errorbarh(height=.1, color=pcol, aes(y=index+dist)) +
+  geom_errorbarh(height=.1, color='black', aes(y=index+dist), size=0.25) +
+  geom_point(fill=pcol, shape=21, size=3) +
   # add MAOC responses
-  geom_point(data=MAOC_suppcat2, color=mcol, aes(y=index, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
-  geom_errorbarh(data = MAOC_suppcat2, height=.1, color=mcol, aes(y=index)) +
+  geom_errorbarh(data = MAOC_suppcat2, height=.1, color='black', aes(y=index), size=0.25) +
+  geom_point(data=MAOC_suppcat2, fill=mcol, aes(y=index, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
   # add SOC responses
-  geom_point(data=SOC_suppcat2, color=scol, aes(y=index-dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
-  geom_errorbarh(data = SOC_suppcat2, height=.1, color=scol, aes(y=index-dist)) +
+  geom_errorbarh(data = SOC_suppcat2, height=.1, color='black', aes(y=index-dist), size=0.25) +
+  geom_point(data=SOC_suppcat2, fill=scol, aes(y=index-dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
   # specify axes
   scale_y_continuous(name = "", breaks=c(8:1), expand = c(0, 0), 
                      labels=c("Size", "Density",  
@@ -327,10 +337,11 @@ plots2 <- ggplot(data=POC_suppcat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, 
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.5), 
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
-        axis.ticks.x = element_line(size = 0.4)) +
+        plot.margin = margin(0,0.1,0.1,0, "cm"),
+        axis.ticks.x = element_line(size = 0.4), axis.text=element_text(colour="black"), axis.title=element_text(size=10)) +
   # add labels for moderators     2.5, 7.5, 9.5, 13.5,17.5
   annotate(geom= "text", x=rep(xmaxim,3), y=c(7.5, 6, 1.75), hjust = 1,vjust=0.5, fontface =3,
-           label=c("Fractionation\nmethod", "Dispersing\nagent", "Measurement")) +
+           label=c("Fractionation\nmethod", "Dispersing\nagent", "Measurement"), size=modsize) +
   # add sample sizes
   annotate(geom= "text", x=POC_suppcat2$uci.mpc+4, y=c(POC_suppcat2$index+dist), 
            hjust = 0, size=2, label=paste0(POC_suppcat2$nobs, " / ", POC_suppcat2$nstudy)) +
@@ -339,7 +350,7 @@ plots2 <- ggplot(data=POC_suppcat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, 
   annotate(geom= "text", x=SOC_suppcat2$uci.mpc+4, y=c(SOC_suppcat2$index-dist), 
            hjust = 0, size=2, label=paste0(SOC_suppcat2$nobs, " / ", SOC_suppcat2$nstudy))
 
-png("Figures/S2_.png", width=5, height=5.5, units="in",res=300)
+jpeg("Figures/S2_.jpeg", width=5, height=5.5, units="in",res=600)
 plots2
 dev.off()
 

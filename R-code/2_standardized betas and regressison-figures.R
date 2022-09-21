@@ -583,7 +583,7 @@ p <- ggplot(dat, aes(x=id, y=m, fill=resp)) + # Note that id is a factor. If x i
 p
 
 
-png("Figures/4_standardized-betas.png", width=4.2, height=4.2, units="in",res=300)
+jpeg("Figures/4_standardized-betas.jpeg", width=4.2, height=4.2, units="in",res=600)
 p
 dev.off()
 
@@ -773,7 +773,7 @@ p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, siz
 p_Prec
 
 
-png("Figures/S2_POC regressions_standardized.png", width=12, height=14, units="in",res=300)
+jpeg("Figures/S2_POC regressions_standardized.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
@@ -963,7 +963,7 @@ p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, siz
 p_Prec
 
 
-png("Figures/S3_MAOC regressions_standardized.png", width=12, height=14, units="in",res=300)
+jpeg("Figures/S3_MAOC regressions_standardized.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
@@ -1149,7 +1149,7 @@ p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, siz
 p_Prec
 
 
-png("Figures/S4_SOC regressions_standardized.png", width=12, height=14, units="in",res=300)
+jpeg("Figures/S4_SOC regressions_standardized.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
