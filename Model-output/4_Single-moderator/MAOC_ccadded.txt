@@ -1,27 +1,27 @@
 
-Multivariate Meta-Analysis Model (k = 263; method: REML)
+Multivariate Meta-Analysis Model (k = 178; method: REML)
 
-   logLik   Deviance        AIC        BIC       AICc 
- 199.1220  -398.2440  -388.2440  -370.4406  -388.0078   
+   logLik   Deviance        AIC        BIC       AICc  ​ 
+ 128.8431  -257.6863  -247.6863  -231.8624  -247.3313   
 
 Variance Components:
 
             estim    sqrt  nlvls  fixed    factor 
-sigma^2.1  0.0042  0.0646    263     no    Obs.ID 
-sigma^2.2  0.0059  0.0770     27     no  StudyNum 
+sigma^2.1  0.0044  0.0667    178     no    Obs.ID 
+sigma^2.2  0.0056  0.0749     23     no  StudyNum 
 
 Test for Residual Heterogeneity:
-QE(df = 260) = 1271.7365, p-val < .0001
+QE(df = 175) = 985.4258, p-val < .0001
 
 Test of Moderators (coefficients 1:3):
-F(df1 = 3, df2 = 260) = 5.8867, p-val = 0.0007
+F(df1 = 3, df2 = 175) = 4.7733, p-val = 0.0032
 
 Model Results:
 
-                     estimate      se    tval   df    pval    ci.lb   ci.ub 
-ccadded.grass          0.0635  0.0195  3.2479  260  0.0013   0.0250  0.1020   ** 
-ccadded.legume         0.0716  0.0210  3.4074  260  0.0008   0.0302  0.1130  *** 
-ccadded.grasslegume    0.0209  0.0208  1.0058  260  0.3155  -0.0200  0.0619      
+                     estimate      se    tval   df    pval    ci.lb   ci.ub    ​ 
+ccadded.grass          0.0750  0.0228  3.2962  175  0.0012   0.0301  0.1199  ** 
+ccadded.legume         0.0656  0.0256  2.5586  175  0.0114   0.0150  0.1162   * 
+ccadded.grasslegume    0.0150  0.0235  0.6371  175  0.5249  -0.0314  0.0614     
 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

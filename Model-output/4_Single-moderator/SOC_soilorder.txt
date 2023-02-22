@@ -1,29 +1,29 @@
 
-Multivariate Meta-Analysis Model (k = 518; method: REML)
+Multivariate Meta-Analysis Model (k = 344; method: REML)
 
-   logLik   Deviance        AIC        BIC       AICc 
- 374.1455  -748.2910  -734.2910  -704.6091  -734.0692   
+   logLik   Deviance        AIC        BIC       AICc  ​ 
+ 251.1936  -502.3873  -488.3873  -461.6053  -488.0489   
 
 Variance Components:
 
             estim    sqrt  nlvls  fixed    factor 
-sigma^2.1  0.0059  0.0767    518     no    Obs.ID 
-sigma^2.2  0.0062  0.0787     50     no  StudyNum 
+sigma^2.1  0.0051  0.0713    344     no    Obs.ID 
+sigma^2.2  0.0054  0.0737     44     no  StudyNum 
 
 Test for Residual Heterogeneity:
-QE(df = 513) = 1845.8819, p-val < .0001
+QE(df = 339) = 1260.2938, p-val < .0001
 
 Test of Moderators (coefficients 1:5):
-F(df1 = 5, df2 = 513) = 4.4640, p-val = 0.0005
+F(df1 = 5, df2 = 339) = 4.5357, p-val = 0.0005
 
 Model Results:
 
-                       estimate      se    tval   df    pval    ci.lb   ci.ub 
-soilorder.Alfisols       0.0050  0.0289  0.1713  513  0.8641  -0.0519  0.0618     
-soilorder.Oxisols        0.0598  0.0383  1.5607  513  0.1192  -0.0155  0.1351     
-soilorder.Mollisols      0.0520  0.0205  2.5335  513  0.0116   0.0117  0.0922   * 
-soilorder.Ultisols       0.0797  0.0370  2.1524  513  0.0318   0.0070  0.1525   * 
-soilorder.Inceptisols    0.1223  0.0412  2.9670  513  0.0031   0.0413  0.2033  ** 
+                       estimate      se    tval   df    pval    ci.lb   ci.ub    ​ 
+soilorder.Alfisols       0.0176  0.0289  0.6105  339  0.5419  -0.0392  0.0745     
+soilorder.Oxisols        0.1020  0.0414  2.4620  339  0.0143   0.0205  0.1835   * 
+soilorder.Mollisols      0.0571  0.0201  2.8441  339  0.0047   0.0176  0.0966  ** 
+soilorder.Ultisols       0.0084  0.0502  0.1683  339  0.8665  -0.0903  0.1072     
+soilorder.Inceptisols    0.1252  0.0439  2.8508  339  0.0046   0.0388  0.2116  ** 
 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

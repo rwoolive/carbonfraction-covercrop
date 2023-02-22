@@ -1,8 +1,0 @@
-
-        df       AIC       BIC      AICc     logLik       LRT   pval         QE 
-Full     3  327.9327  340.3652  327.9846  -160.9663                  10093.1937 
-Reduced  2 4945.0105 4953.2988 4945.0364 -2470.5052 4619.0778 <.0001 10093.1937 
-        tau^2 
-Full       NA 
-Reduced    NA 
-

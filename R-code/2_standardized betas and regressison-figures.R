@@ -8,9 +8,9 @@ library(ggpubr)
 
 
 ###### read in data
-dat_POC <- read.csv("Processed-data/POC_no-nitrogen.csv")
-dat_MAOC <- read.csv("Processed-data/MAOC_no-nitrogen.csv")
-dat_SOC <- read.csv("Processed-data/SOC_no-nitrogen.csv")
+dat_POC <- read.csv("Processed-data/POC.csv")
+dat_MAOC <- read.csv("Processed-data/MAOC.csv")
+dat_SOC <- read.csv("Processed-data/SOC.csv")
 
 
 # center and scale all predictor and response variables
@@ -497,7 +497,7 @@ effectsdat_SOC2$index <- seq(1:dim(effectsdat_SOC2)[1])
 
 
 
-################# Fig. 4 in manuscript: 
+################# fig
 # standardized betas between carbon pool response to cover cropping and continuous moderators
 pcol <- "olivedrab4"
 mcol <- "orange4"
@@ -505,7 +505,7 @@ scol <- "black"
 nmods <- 11
 
 
-# Create dataframe: 
+# Create dataframe:
 options(scipen = 100)
 dat <- data.frame(r2 = c(as.numeric(effectsdat_SOC2$r2[1:nmods]), as.numeric(effectsdat_MAOC2$r2[1:nmods]), as.numeric(effectsdat_POC2$r2[1:nmods])),
                   # p-value
@@ -523,9 +523,9 @@ dat$r2[dat$r2<0] <- 0 # replace negative r-square values with zero
 dat <- dat[order(dat$index),]
 
 dat$mod <- as.factor(dat$mod)
-dat$mod2 <- rep(c("Baseline\nsand\n(%)", "Baseline\nsilt\n(%)", "Baseline\nclay\n(%)", "Baseline\nSOC\n(%)", "Baseline\npH", 
+dat$mod2 <- rep(c("Baseline\nsand\n(%)", "Baseline\nsilt\n(%)", "Baseline\nclay\n(%)", "Baseline\nSOC\n(%)", "Baseline\npH",
                   "Number of\nspecies added", "Aboveground\nC inputs\n(Mg ha-1 yr-1)",
-                  "Duration\n(yrs)", "Nitrogen\nfertilization\n(kg ha-1 yr-1)", 
+                  "Duration\n(yrs)", "Nitrogen\nfertilization\n(kg ha-1 yr-1)",
                   "Mean annual\ntemperature\n(°C)", "Annual\nprecipitation\n(mm)"), each=3)
 dat$resp <- as.factor(dat$resp)
 dat$id <- as.factor(1:dim(dat)[1])
@@ -540,52 +540,52 @@ write.csv(dat, "Model-output/4_Single-moderator/*regression-data_standardized.cs
 
 
 
-# df for lines separating each mod
-df <- data.frame(x = seq(0.5,dim(dat)[1], by=3),
-                 y= rep(-0.25, 11),
-                 yend=rep(0.75,11))
-
-# Make the plot
-p <- ggplot(dat, aes(x=id, y=m, fill=resp)) + # Note that id is a factor. If x is numeric, there is some space between the first bar
-    geom_bar(stat="identity" ) +
-  scale_fill_manual(values=c(mcol, pcol, scol))+
-  ylim(-0.3,0.9) +
-  # vertical lines
-  geom_segment(inherit.aes = F, data=df, aes(x=x, xend=x, y=y, yend=yend),
-               color='black', alpha=.25) +
-  # horizontal lines
-  geom_hline(yintercept=seq(-0.4, 0.7, by=0.1), color='black', alpha=.25) +
-  geom_hline(yintercept=0, color='black', alpha=.75) +
-  annotate(geom= "label", x=17, y=c(-0.4, -0.2, 0.2, 0.4, 0.6), fill="white", alpha=0.5, label.size = NA,
-           size=1.75, label=c(-0.4, -0.2, 0.2, 0.4, 0.6)) +
-  # predictor variable labels
-  annotate(geom= "text", x=seq(2,dim(dat)[1], by=3), y=0.9, 
-           size=2.25, label=unique(dat$mod2)) +
-  # Custom the theme: 
-  theme_minimal() +
-  theme(axis.text = element_blank(),axis.title = element_blank(),
-        panel.grid = element_blank(), legend.position="bottom", 
-        legend.key.height = unit(0.5, 'cm'), #change legend key height
-        legend.key.width = unit(0.7, 'cm'), #change legend key width
-        legend.title = element_text(size=8), #change legend title font size
-        legend.text = element_text(size=6),
-        legend.margin=margin(t = -0.7, unit='cm'),
-        plot.margin = margin(0,0,0,0, "cm"))+
-  # mark significant associations
-  #annotate(geom= "text", x=1:dim(dat)[1], y=dat$m+0.05, hjust=0.5,
-           #size=5, label=dat$signif, col=dat$color)+   
-  # This makes the coordinate polar instead of cartesian.
-  coord_polar(start=6) +
-  labs(fill = "Cover crop response")  +
-  geom_bar(stat="identity" ) 
-  
-  
-p
-
-
-# jpeg("Figures/4_standardized-betas.jpeg", width=4.2, height=4.2, units="in",res=600)
+# # df for lines separating each mod
+# df <- data.frame(x = seq(0.5,dim(dat)[1], by=3),
+#                  y= rep(-0.25, 11),
+#                  yend=rep(0.75,11))
+# 
+# # Make the plot
+# p <- ggplot(dat, aes(x=id, y=m, fill=resp)) + # Note that id is a factor. If x is numeric, there is some space between the first bar
+#     geom_bar(stat="identity" ) +
+#   scale_fill_manual(values=c(mcol, pcol, scol))+
+#   ylim(-0.3,0.9) +
+#   # vertical lines
+#   geom_segment(inherit.aes = F, data=df, aes(x=x, xend=x, y=y, yend=yend),
+#                color='black', alpha=.25) +
+#   # horizontal lines
+#   geom_hline(yintercept=seq(-0.4, 0.7, by=0.1), color='black', alpha=.25) +
+#   geom_hline(yintercept=0, color='black', alpha=.75) +
+#   annotate(geom= "label", x=17, y=c(-0.4, -0.2, 0.2, 0.4, 0.6), fill="white", alpha=0.5, label.size = NA,
+#            size=1.75, label=c(-0.4, -0.2, 0.2, 0.4, 0.6)) +
+#   # predictor variable labels
+#   annotate(geom= "text", x=seq(2,dim(dat)[1], by=3), y=0.9, 
+#            size=2.25, label=unique(dat$mod2)) +
+#   # Custom the theme: 
+#   theme_minimal() +
+#   theme(axis.text = element_blank(),axis.title = element_blank(),
+#         panel.grid = element_blank(), legend.position="bottom", 
+#         legend.key.height = unit(0.5, 'cm'), #change legend key height
+#         legend.key.width = unit(0.7, 'cm'), #change legend key width
+#         legend.title = element_text(size=8), #change legend title font size
+#         legend.text = element_text(size=6),
+#         legend.margin=margin(t = -0.7, unit='cm'),
+#         plot.margin = margin(0,0,0,0, "cm"))+
+#   # mark significant associations
+#   #annotate(geom= "text", x=1:dim(dat)[1], y=dat$m+0.05, hjust=0.5,
+#            #size=5, label=dat$signif, col=dat$color)+   
+#   # This makes the coordinate polar instead of cartesian.
+#   coord_polar(start=6) +
+#   labs(fill = "Cover crop response")  +
+#   geom_bar(stat="identity" ) 
+#   
+#   
 # p
-# dev.off()
+# 
+# 
+# # jpeg("Figures/4_standardized-betas.jpeg", width=4.2, height=4.2, units="in",res=600)
+# # p
+# # dev.off()
 
 
 
@@ -600,7 +600,7 @@ p
 
 
 
-###################### appendix figure: regression plots for POC
+###################### fig
 mods <- unique(dat$mod2)
 tsize <- 1.5
 hlinesize <- 1.5
@@ -773,13 +773,13 @@ p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, siz
 p_Prec
 
 
-jpeg("Figures/A.4_POC regressions_standardized.jpeg", width=12, height=14, units="in",res=600)
+#jpeg("Figures/A.4_POC regressions_standardized.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
           labels = LETTERS[1:11],
           ncol = 3, nrow = 4)
-dev.off()
+#dev.off()
 
 
 
@@ -790,7 +790,7 @@ dev.off()
 
 
 
-###################### appendix figure: regression plots for MAOC
+###################### fig
 mods <- unique(dat$mod2)
 tsize <- 1.5
 hlinesize <- 1.5
@@ -963,20 +963,20 @@ p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, siz
 p_Prec
 
 
-jpeg("Figures/A.5_MAOC regressions_standardized.jpeg", width=12, height=14, units="in",res=600)
+#jpeg("Figures/A.5_MAOC regressions_standardized.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
           labels = LETTERS[1:11],
           ncol = 3, nrow = 4)
-dev.off()
+#dev.off()
 
 
 
 
 
 
-###################### appendix figure: regression plots for SOC
+###################### fig
 mods <- unique(dat$mod2)
 tsize <- 1.5
 hlinesize <- 1.5
@@ -1149,10 +1149,10 @@ p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, siz
 p_Prec
 
 
-jpeg("Figures/A.6_SOC regressions_standardized.jpeg", width=12, height=14, units="in",res=600)
+#jpeg("Figures/A.6_SOC regressions_standardized.jpeg", width=12, height=14, units="in",res=600)
 ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph, 
           p_species.added, p_ag.C.inputs, p_duration, p_nfert, 
           p_Temp, p_Prec,
           labels = LETTERS[1:11],
           ncol = 3, nrow = 4)
-dev.off()
+#dev.off()

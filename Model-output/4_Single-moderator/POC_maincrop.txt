@@ -1,29 +1,29 @@
 
-Multivariate Meta-Analysis Model (k = 570; method: REML)
+Multivariate Meta-Analysis Model (k = 404; method: REML)
 
-   logLik   Deviance        AIC        BIC       AICc 
--182.1214   364.2428   378.2428   408.6006   378.4439   
+  logLik  Deviance       AIC       BIC      AICc  ​ 
+ 32.4087  -64.8175  -50.8175  -22.8948  -50.5311   
 
 Variance Components:
 
             estim    sqrt  nlvls  fixed    factor 
-sigma^2.1  0.0907  0.3011    570     no    Obs.ID 
-sigma^2.2  0.0308  0.1754     54     no  StudyNum 
+sigma^2.1  0.0331  0.1818    404     no    Obs.ID 
+sigma^2.2  0.0281  0.1676     48     no  StudyNum 
 
 Test for Residual Heterogeneity:
-QE(df = 565) = 12295.6774, p-val < .0001
+QE(df = 399) = 4745.9790, p-val < .0001
 
 Test of Moderators (coefficients 1:5):
-F(df1 = 5, df2 = 565) = 7.1471, p-val < .0001
+F(df1 = 5, df2 = 399) = 6.3657, p-val < .0001
 
 Model Results:
 
-                       estimate      se    tval   df    pval    ci.lb   ci.ub 
-maincrop.cereal          0.1787  0.0435  4.1052  565  <.0001   0.0932  0.2642  *** 
-maincrop.legume          0.2407  0.0680  3.5370  565  0.0004   0.1070  0.3744  *** 
-maincrop.cereallegume    0.0842  0.0522  1.6109  565  0.1078  -0.0185  0.1868      
-maincrop.otherrowcrop    0.1522  0.1311  1.1616  565  0.2459  -0.1052  0.4097      
-maincrop.perennial       0.2083  0.1060  1.9656  565  0.0498   0.0002  0.4164    * 
+                       estimate      se    tval   df    pval    ci.lb   ci.ub     ​ 
+maincrop.cereal          0.1130  0.0418  2.7011  399  0.0072   0.0308  0.1953   ** 
+maincrop.legume          0.2531  0.0590  4.2939  399  <.0001   0.1372  0.3690  *** 
+maincrop.cereallegume    0.0772  0.0462  1.6704  399  0.0956  -0.0137  0.1680    . 
+maincrop.otherrowcrop    0.0895  0.1166  0.7679  399  0.4430  -0.1396  0.3186      
+maincrop.perennial       0.2102  0.0940  2.2363  399  0.0259   0.0254  0.3949    * 
 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

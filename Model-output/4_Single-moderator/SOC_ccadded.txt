@@ -1,29 +1,29 @@
 
-Multivariate Meta-Analysis Model (k = 518; method: REML)
+Multivariate Meta-Analysis Model (k = 344; method: REML)
 
-   logLik   Deviance        AIC        BIC       AICc 
- 374.0059  -748.0119  -734.0119  -704.3299  -733.7901   
+   logLik   Deviance        AIC        BIC       AICc  ​ 
+ 251.0169  -502.0337  -488.0337  -461.2517  -487.6954   
 
 Variance Components:
 
             estim    sqrt  nlvls  fixed    factor 
-sigma^2.1  0.0060  0.0775    518     no    Obs.ID 
-sigma^2.2  0.0052  0.0719     50     no  StudyNum 
+sigma^2.1  0.0051  0.0713    344     no    Obs.ID 
+sigma^2.2  0.0051  0.0717     44     no  StudyNum 
 
 Test for Residual Heterogeneity:
-QE(df = 513) = 1692.9604, p-val < .0001
+QE(df = 339) = 1190.7884, p-val < .0001
 
 Test of Moderators (coefficients 1:5):
-F(df1 = 5, df2 = 513) = 6.1211, p-val < .0001
+F(df1 = 5, df2 = 339) = 5.5911, p-val < .0001
 
 Model Results:
 
-                             estimate      se     tval   df    pval    ci.lb   ci.ub 
-ccadded.grass                  0.0601  0.0136   4.4124  513  <.0001   0.0334  0.0869  *** 
-ccadded.legume                 0.0761  0.0164   4.6536  513  <.0001   0.0440  0.1083  *** 
-ccadded.grasslegume            0.0258  0.0188   1.3743  513  0.1699  -0.0111  0.0628      
-ccadded.brassica              -0.0034  0.0350  -0.0960  513  0.9236  -0.0721  0.0654      
-ccadded.grasslegumebrassica    0.0354  0.0317   1.1145  513  0.2656  -0.0270  0.0977      
+                             estimate      se    tval   df    pval    ci.lb   ci.ub     ​ 
+ccadded.grass                  0.0741  0.0150  4.9370  339  <.0001   0.0446  0.1036  *** 
+ccadded.legume                 0.0639  0.0196  3.2670  339  0.0012   0.0254  0.1024   ** 
+ccadded.grasslegume            0.0228  0.0206  1.1082  339  0.2685  -0.0177  0.0632      
+ccadded.brassica               0.0086  0.0377  0.2284  339  0.8195  -0.0656  0.0828      
+ccadded.grasslegumebrassica    0.0441  0.0370  1.1934  339  0.2336  -0.0286  0.1169      
 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

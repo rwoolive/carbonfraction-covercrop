@@ -20,9 +20,7 @@ library(ggmap)
 ##############################
 # read in data
 ##############################
-dat <- read.csv("Raw-data/4_metadata - final_withclimdat.csv")
-# select only c and organic matter based observations
-dat <- dat[which(dat$rv %in% c("POC", "TOC", "MAOC", "SOC", "POM", "TOM", "SOM", "MAOM")),]
+dat <- read.csv("Raw-data/4_metadata - final_withclimdat_2.csv")
 
 dat$country[which(dat$country=="USA")] <- "United States"
 

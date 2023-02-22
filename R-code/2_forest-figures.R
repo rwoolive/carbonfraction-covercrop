@@ -6,10 +6,7 @@ library(ggplot2)
 
 
 ###### POC data
-POC <- read.csv("Model-output/4_Single-moderator/effects-by-category_POC_no-nitrogen.csv")
-POC <- POC[-which(POC$group=="ccseason.fall"),]
-#POC[which(POC$nstudy<3), 4:8] <- NA # remove effects represented by less than three studies
-POC <- POC[c(1:63),]
+POC <- read.csv("Model-output/4_Single-moderator/*effects-by-category_POC.csv")
 POC$moderator <- rep(NA, dim(POC)[1])
 POC$level <- rep(NA, dim(POC)[1])
 POC$mean.mpc <- rep(NA, dim(POC)[1])
@@ -25,27 +22,16 @@ for(i in 1:dim(POC)[1]){
 }
 
 POC_maincat1 <- POC[which(POC$moderator %in% c("Overall","depth", "ccseason", "tillage")),]
-POC_maincat1 <- POC_maincat1[-which(POC_maincat1$group %in% c("depth.deepsoil")),]
 POC_maincat2 <- POC[which(POC$moderator %in% c( "maincrop", "ccadded")),]
-POC_maincat2 <- POC_maincat2[-which(POC_maincat2$group %in% c("ccadded.grassbrassica", "ccadded.legumebrassica")),]
 POC_maincon <- POC[which(POC$group %in% c("nfert", "ag.C.inputs",  "sand", "silt", "clay", "toc", "ph", 
                                           "species.added", "duration", "Temp", "Prec")),]
 POC_suppcat1 <- POC[which(POC$moderator %in% c("soilorder", "Continent", "SoilCollectionSeason")),]
-POC_suppcat1 <- POC_suppcat1[-which(POC_suppcat1$group %in% c("soilorder.Spodosols", "Continent.Africa", "Continent.Australia")),]
 POC_suppcat2 <- POC[which(POC$moderator %in% c("FractionationMethod", "DispersingAgent", "ResponseCalc")),]
-POC_suppcat2 <- POC_suppcat2[-which(POC_suppcat2$group %in% c("DispersingAgent.Combo", "FractionationMethod.SizeAndDensity")),]
 
-POC_maincat1$index <- as.numeric(c(dim(POC_maincat1)[1]:1))
-POC_maincat2$index <- as.numeric(c(dim(POC_maincat2)[1]:1))
-POC_suppcat1$index <- as.numeric(c(dim(POC_suppcat1)[1]:1))
-POC_suppcat2$index <- as.numeric(c(dim(POC_suppcat2)[1]:1))
 
 
 ##### MAOC data
-MAOC <- read.csv("Model-output/4_Single-moderator/effects-by-category_MAOC_no-nitrogen.csv")
-MAOC <- MAOC[-which(MAOC$group=="ccseason.fall"),]
-#MAOC[which(MAOC$nstudy<3), 4:8] <- NA # remove effects represented by less than three studies
-MAOC <- MAOC[c(1:63),]
+MAOC <- read.csv("Model-output/4_Single-moderator/*effects-by-category_MAOC.csv")
 MAOC$moderator <- rep(NA, dim(MAOC)[1])
 MAOC$level <- rep(NA, dim(MAOC)[1])
 MAOC$mean.mpc <- rep(NA, dim(MAOC)[1])
@@ -61,20 +47,12 @@ for(i in 1:dim(MAOC)[1]){
 }
 
 MAOC_maincat1 <- MAOC[which(MAOC$moderator %in% c("Overall","depth", "ccseason", "tillage")),]
-MAOC_maincat1 <- MAOC_maincat1[-which(MAOC_maincat1$group %in% c("depth.deepsoil")),]
 MAOC_maincat2 <- MAOC[which(MAOC$moderator %in% c( "maincrop", "ccadded")),]
-MAOC_maincat2 <- MAOC_maincat2[-which(MAOC_maincat2$group %in% c("ccadded.grassbrassica", "ccadded.legumebrassica")),]
 MAOC_maincon <- MAOC[which(MAOC$group %in% c("nfert", "ag.C.inputs",  "sand", "silt", "clay", "toc", "ph", 
                                           "species.added", "duration", "Temp", "Prec")),]
 MAOC_suppcat1 <- MAOC[which(MAOC$moderator %in% c("soilorder", "Continent", "SoilCollectionSeason")),]
-MAOC_suppcat1 <- MAOC_suppcat1[-which(MAOC_suppcat1$group %in% c("soilorder.Spodosols", "Continent.Africa", "Continent.Australia")),]
 MAOC_suppcat2 <- MAOC[which(MAOC$moderator %in% c("FractionationMethod", "DispersingAgent", "ResponseCalc")),]
-MAOC_suppcat2 <- MAOC_suppcat2[-which(MAOC_suppcat2$group %in% c("DispersingAgent.Combo", "FractionationMethod.SizeAndDensity")),]
 
-MAOC_maincat1$index <- as.numeric(c(dim(MAOC_maincat1)[1]:1))
-MAOC_maincat2$index <- as.numeric(c(dim(MAOC_maincat2)[1]:1))
-MAOC_suppcat1$index <- as.numeric(c(dim(MAOC_suppcat1)[1]:1))
-MAOC_suppcat2$index <- as.numeric(c(dim(MAOC_suppcat2)[1]:1))
 
 
 
@@ -82,10 +60,7 @@ MAOC_suppcat2$index <- as.numeric(c(dim(MAOC_suppcat2)[1]:1))
 
 
 ##### SOC data
-SOC <- read.csv("Model-output/4_Single-moderator/effects-by-category_SOC_no-nitrogen.csv")
-SOC <- SOC[-which(SOC$group=="ccseason.fall"),]
-#SOC[which(SOC$nstudy<3), 4:8] <- NA # remove effects represented by less than three studies
-SOC <- SOC[c(1:63),]
+SOC <- read.csv("Model-output/4_Single-moderator/*effects-by-category_SOC.csv")
 SOC$moderator <- rep(NA, dim(SOC)[1])
 SOC$level <- rep(NA, dim(SOC)[1])
 SOC$mean.mpc <- rep(NA, dim(SOC)[1])
@@ -101,20 +76,36 @@ for(i in 1:dim(SOC)[1]){
 }
 
 SOC_maincat1 <- SOC[which(SOC$moderator %in% c("Overall","depth", "ccseason", "tillage")),]
-SOC_maincat1 <- SOC_maincat1[-which(SOC_maincat1$group %in% c("depth.deepsoil")),]
 SOC_maincat2 <- SOC[which(SOC$moderator %in% c( "maincrop", "ccadded")),]
-SOC_maincat2 <- SOC_maincat2[-which(SOC_maincat2$group %in% c("ccadded.grassbrassica", "ccadded.legumebrassica")),]
 SOC_maincon <- SOC[which(SOC$group %in% c("nfert", "ag.C.inputs",  "sand", "silt", "clay", "toc", "ph", 
                                           "species.added", "duration", "Temp", "Prec")),]
 SOC_suppcat1 <- SOC[which(SOC$moderator %in% c("soilorder", "Continent", "SoilCollectionSeason")),]
-SOC_suppcat1 <- SOC_suppcat1[-which(SOC_suppcat1$group %in% c("soilorder.Spodosols", "Continent.Africa", "Continent.Australia")),]
 SOC_suppcat2 <- SOC[which(SOC$moderator %in% c("FractionationMethod", "DispersingAgent", "ResponseCalc")),]
-SOC_suppcat2 <- SOC_suppcat2[-which(SOC_suppcat2$group %in% c("DispersingAgent.Combo", "FractionationMethod.SizeAndDensity")),]
+
+
+
+
+dim(POC_maincat1); dim(MAOC_maincat1); dim(SOC_maincat1)
+dim(POC_maincat2); dim(MAOC_maincat2); dim(SOC_maincat2)
+dim(POC_suppcat1); dim(MAOC_suppcat1); dim(SOC_suppcat1)
+dim(POC_suppcat2); dim(MAOC_suppcat2); dim(SOC_suppcat2)
+
+### index
+
+POC_maincat1$index <- as.numeric(c(dim(POC_maincat1)[1]:1))
+POC_maincat2$index <- as.numeric(c(dim(POC_maincat2)[1]:1))
+POC_suppcat1$index <- as.numeric(c(dim(POC_suppcat1)[1]:1))
+POC_suppcat2$index <- as.numeric(c(dim(POC_suppcat2)[1]:1))
+
+MAOC_maincat1$index <- as.numeric(c(9:6,4:1)) # MAOC_maincat1 is missing spring (index 5)
+MAOC_maincat2$index <- as.numeric(c(10:8,5:3,1)) # brassica (index 7), grasslegumebrassica (index 6), otherrowcrop (index 2)
+MAOC_suppcat1$index <- as.numeric(c(13,11,7,5,3:1)) # Oxisols (12), Ultisols (10), Inceptisol (9), Asia (8), NorthAmerica (6), winter (4)
+MAOC_suppcat2$index <- as.numeric(c(dim(MAOC_suppcat2)[1]:1))
 
 SOC_maincat1$index <- as.numeric(c(dim(SOC_maincat1)[1]:1))
 SOC_maincat2$index <- as.numeric(c(dim(SOC_maincat2)[1]:1))
-SOC_suppcat1$index <- as.numeric(c(dim(SOC_suppcat1)[1]:1))
-SOC_suppcat2$index <- as.numeric(c(dim(SOC_suppcat2)[1]:1))
+SOC_suppcat1$index <- as.numeric(c(13:9,7:5,3:1)) # Asia (8), winter (4)
+SOC_suppcat2$index <- as.numeric(c(6:2)) # Indirect
 
 
 
@@ -155,8 +146,8 @@ plot2 <- ggplot(data=POC_maincat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, x
   # specify axes
   scale_y_continuous(name = "", breaks=c(9.3, 9, 8.7, 8:1), expand = c(0, 0),
                      labels=c("POC", "MAOC", "SOC", 
-                              "Surface soil (0-10 cm)", 
-                              "Subsoil (10-30 cm)", 
+                              "0-10 cm", 
+                              "10-30 cm", 
                               "Winter", "Spring", "Summer", "Year-round", 
                               "Conventional", "Reduced or no-till"), # labels based on POC_maincat1$level
                      limits=c(0.5,9.5)) + 
@@ -174,11 +165,11 @@ plot2 <- ggplot(data=POC_maincat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, x
   annotate(geom= "text", x=rep(xmaxim,4), y=c(9, 7.5, 4.5, 1.5), hjust = 1,vjust=0.5,fontface =3,
            label=c("Overall", "Depth", "Cover crop\nseason", "Tillage"), size=modsize) +
   # add sample sizes
-  annotate(geom= "text", x=POC_maincat1$uci.mpc+4, y=c(9:1+dist), 
+  annotate(geom= "text", x=POC_maincat1$uci.mpc+4, y=c(POC_maincat1$index+dist), 
            hjust = 0, size=2.25, label=paste0(POC_maincat1$nobs, " / ", POC_maincat1$nstudy)) +
-  annotate(geom= "text", x=MAOC_maincat1$uci.mpc+4, y=c(9:1), 
+  annotate(geom= "text", x=MAOC_maincat1$uci.mpc+4, y=c(MAOC_maincat1$index), 
            hjust = 0, size=2.25, label=paste0(MAOC_maincat1$nobs, " / ", MAOC_maincat1$nstudy)) +
-  annotate(geom= "text", x=SOC_maincat1$uci.mpc+4, y=c(9:1-dist), 
+  annotate(geom= "text", x=SOC_maincat1$uci.mpc+4, y=c(SOC_maincat1$index-dist), 
            hjust = 0, size=2.25, label=paste0(SOC_maincat1$nobs, " / ", SOC_maincat1$nstudy))
 
 jpeg("Figures/2_overall_depth_season_tillage.jpeg", width=5, height=6.2, units="in",res=600)
@@ -187,7 +178,7 @@ dev.off()
 
 
 
-# Fig. 3 in manuscript
+# Fig. 6 in manuscript
 dist <- 0.2
 pcol <- "olivedrab4"
 mcol <- "orange4"
@@ -210,9 +201,9 @@ plot3 <- ggplot(data=POC_maincat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, x
   # specify axes
   scale_y_continuous(name = "", breaks=c(10:1), expand = c(0, 0),
                      labels=c("Grass", "Legume", "Grass + legume",
-                              expression(paste(italic("Brassica"))),
-                              expression(paste("Grass + Legume + ",italic("Brassica"))), 
-                              "Cereal", "Legume", "Cereal+legume", "Other row crop", "Perennial"), # labels based on POC_maincat2$level
+                              "Brassica",
+                              "Grass + legume + brassica", 
+                              "Cereal", "Legume", "Cereal + legume", "Other row crop", "Perennial"), # labels based on POC_maincat2$level
                      limits=c(0.5,10.5)) + 
   scale_x_continuous(limits=c(-33,xmaxim), breaks= seq(-20,80,20),
                      sec.axis = sec_axis(~ log((. / 100)+1), name = "Log response ratio")) +
@@ -235,7 +226,7 @@ plot3 <- ggplot(data=POC_maincat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, x
   annotate(geom= "text", x=SOC_maincat2$uci.mpc+4, y=c(SOC_maincat2$index-dist), 
            hjust = 0, size=2.25, label=paste0(SOC_maincat2$nobs, " / ", SOC_maincat2$nstudy))
 
-jpeg("Figures/3_maincrop covercrop.jpeg", width=5, height=6.4, units="in",res=600)
+jpeg("Figures/6_maincrop covercrop.jpeg", width=5, height=6.4, units="in",res=600)
 plot3
 dev.off()
 
@@ -244,14 +235,77 @@ dev.off()
 
 
 
-# Supplementary figures
+
+
+
+# supplementary figs
+dist <- 0.225
+pcol <- "olivedrab4"
+mcol <- "orange4"
+scol <- "black"
+xmaxim <- 85
+
+
+
+plots2 <- ggplot(data=POC_suppcat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
+  # add dividers
+  geom_vline(xintercept=0, color='black', linetype='dashed', alpha=1, size=0.25) +
+  geom_hline(yintercept=c(2.5, 5.5), color='black', linetype='solid', alpha=1, size=0.25) +
+  # add POC responses
+  geom_errorbarh(height=.1, color='black', aes(y=index+dist), size=0.25) +
+  geom_point(fill=pcol, shape=21, size=3) +
+  # add MAOC responses
+  geom_errorbarh(data = MAOC_suppcat2, height=.1, color='black', aes(y=index), size=0.25) +
+  geom_point(data=MAOC_suppcat2, fill=mcol, aes(y=index, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
+  # add SOC responses
+  #geom_errorbarh(data = SOC_suppcat2, height=.1, color='black', aes(y=index-dist), size=0.25) +
+  #geom_point(data=SOC_suppcat2, fill=scol, aes(y=index-dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
+  # specify axes
+  scale_y_continuous(name = "", breaks=c(6:1), expand = c(0, 0), 
+                     labels=c("Size", 
+                              "Sodium hexametaphosphate", "Other solution", "Glass beads", 
+                              "Direct", "Indirect"), 
+                     limits=c(0.5,6.5)) + 
+  scale_x_continuous(limits=c(-33,xmaxim), breaks= seq(-20,100,20),
+                     sec.axis = sec_axis(~ log((. / 100)+1), name = "Log response ratio")) +
+  labs(title='', x='Percent change', y = '') +
+  # set theme
+  theme_minimal() +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.5), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        plot.margin = margin(0,0.1,0.1,0, "cm"),
+        axis.ticks.x = element_line(size = 0.4), axis.text=element_text(colour="black"), axis.title=element_text(size=10)) +
+  # add labels for moderators     2.5, 7.5, 9.5, 13.5,17.5
+  annotate(geom= "text", x=rep(xmaxim,3), y=c(6, 4, 1.5), hjust = 1,vjust=0.5, fontface =3,
+           label=c("Fractionation\nmethod", "Dispersing\nagent", "Measurement"), size=modsize) +
+  # add sample sizes
+  annotate(geom= "text", x=POC_suppcat2$uci.mpc+4, y=c(POC_suppcat2$index+dist), 
+           hjust = 0, size=2, label=paste0(POC_suppcat2$nobs, " / ", POC_suppcat2$nstudy)) +
+  annotate(geom= "text", x=MAOC_suppcat2$uci.mpc+4, y=c(MAOC_suppcat2$index), 
+           hjust = 0, size=2, label=paste0(MAOC_suppcat2$nobs, " / ", MAOC_suppcat2$nstudy)) #+
+  #annotate(geom= "text", x=SOC_suppcat2$uci.mpc+4, y=c(SOC_suppcat2$index-dist), 
+  #         hjust = 0, size=2, label=paste0(SOC_suppcat2$nobs, " / ", SOC_suppcat2$nstudy))
+
+jpeg("Figures/A.3_method-dispersing agent-measurement.jpeg", width=5, height=5, units="in",res=600)
+plots2
+dev.off()
+
+
+
+
+
+
+
+# Supplementary figs
 dist <- 0.275
 pcol <- "olivedrab4"
 mcol <- "orange4"
 scol <- "black"
-xmaxim <- 90
+xmaxim <- 97
 
 
+#MAOC_suppcat1[which(MAOC_suppcat1$group %in% c("soilorder.Oxisols", "soilorder.Ultisols","Continent.NorthAmerica")),c("mean.mpc", "lci.mpc", "uci.mpc")] <- NA
 
 plots1 <- ggplot(data=POC_suppcat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
   # add dividers
@@ -296,65 +350,6 @@ plots1 <- ggplot(data=POC_suppcat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, 
 jpeg("Figures/A.7_soil order-continent-sampling season.jpeg", width=4.5, height=7, units="in",res=600)
 plots1
 dev.off()
-
-
-
-
-
-# supplementary fig
-dist <- 0.225
-pcol <- "olivedrab4"
-mcol <- "orange4"
-scol <- "black"
-xmaxim <- 85
-
-
-
-plots2 <- ggplot(data=POC_suppcat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
-  # add dividers
-  geom_vline(xintercept=0, color='black', linetype='dashed', alpha=1, size=0.25) +
-  geom_hline(yintercept=c(2.5, 6.5), color='black', linetype='solid', alpha=1, size=0.25) +
-  # add POC responses
-  geom_errorbarh(height=.1, color='black', aes(y=index+dist), size=0.25) +
-  geom_point(fill=pcol, shape=21, size=3) +
-  # add MAOC responses
-  geom_errorbarh(data = MAOC_suppcat2, height=.1, color='black', aes(y=index), size=0.25) +
-  geom_point(data=MAOC_suppcat2, fill=mcol, aes(y=index, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
-  # add SOC responses
-  geom_errorbarh(data = SOC_suppcat2, height=.1, color='black', aes(y=index-dist), size=0.25) +
-  geom_point(data=SOC_suppcat2, fill=scol, aes(y=index-dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc), shape=21, size=3) +
-  # specify axes
-  scale_y_continuous(name = "", breaks=c(8:1), expand = c(0, 0), 
-                     labels=c("Size", "Density",  
-                              "Sodium hexametaphosphate", "Other solution", "Glass beads", "Sonication", 
-                              "Direct", "Indirect"), 
-                     limits=c(0.5,8.5)) + 
-  scale_x_continuous(limits=c(-33,xmaxim), breaks= seq(-20,100,20),
-                     sec.axis = sec_axis(~ log((. / 100)+1), name = "Log response ratio")) +
-  labs(title='', x='Percent change', y = '') +
-  # set theme
-  theme_minimal() +
-  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.5), 
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        plot.margin = margin(0,0.1,0.1,0, "cm"),
-        axis.ticks.x = element_line(size = 0.4), axis.text=element_text(colour="black"), axis.title=element_text(size=10)) +
-  # add labels for moderators     2.5, 7.5, 9.5, 13.5,17.5
-  annotate(geom= "text", x=rep(xmaxim,3), y=c(7.5, 6, 1.75), hjust = 1,vjust=0.5, fontface =3,
-           label=c("Fractionation\nmethod", "Dispersing\nagent", "Measurement"), size=modsize) +
-  # add sample sizes
-  annotate(geom= "text", x=POC_suppcat2$uci.mpc+4, y=c(POC_suppcat2$index+dist), 
-           hjust = 0, size=2, label=paste0(POC_suppcat2$nobs, " / ", POC_suppcat2$nstudy)) +
-  annotate(geom= "text", x=MAOC_suppcat2$uci.mpc+4, y=c(MAOC_suppcat2$index), 
-           hjust = 0, size=2, label=paste0(MAOC_suppcat2$nobs, " / ", MAOC_suppcat2$nstudy)) +
-  annotate(geom= "text", x=SOC_suppcat2$uci.mpc+4, y=c(SOC_suppcat2$index-dist), 
-           hjust = 0, size=2, label=paste0(SOC_suppcat2$nobs, " / ", SOC_suppcat2$nstudy))
-
-jpeg("Figures/A.3_method-dispersing agent-measurement.jpeg", width=5, height=5.5, units="in",res=600)
-plots2
-dev.off()
-
-
 
 
 

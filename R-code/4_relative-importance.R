@@ -2,9 +2,9 @@
 library(metafor)
 library(glmulti)
 
-dat_POC <- read.csv("Processed-data/POC_no-nitrogen.csv")
-dat_MAOC <- read.csv("Processed-data/MAOC_no-nitrogen.csv")
-dat_SOC <- read.csv("Processed-data/SOC_no-nitrogen.csv")
+dat_POC <- read.csv("Processed-data/POC.csv")
+dat_MAOC <- read.csv("Processed-data/MAOC.csv")
+dat_SOC <- read.csv("Processed-data/SOC.csv")
 
 ## for each dataset, 
 # response variable: logRR
@@ -12,9 +12,26 @@ dat_SOC <- read.csv("Processed-data/SOC_no-nitrogen.csv")
 # predictor variables: depth.type + ccseason + tillage + cover.crop.category + maincrop + ag.C.inputs + Temp
 
 
-dat_POC1 <- dat_POC[!apply(dat_POC[,c("logRR", "var", "depth.type" , "ccseason" , "tillage" , "cover.crop.category" , "maincrop" , "ag.C.inputs" ,  "Temp")], 1, anyNA),]
-dat_MAOC1 <- dat_MAOC[!apply(dat_MAOC[,c("logRR", "var", "ccseason" , "cover.crop.category" , "maincrop" , "ag.C.inputs" )], 1, anyNA),]
-dat_SOC1 <- dat_SOC[!apply(dat_SOC[,c("logRR", "var", "depth.type" , "ccseason" , "tillage" , "cover.crop.category" , "maincrop" , "ag.C.inputs" )], 1, anyNA),]
+dat_POC1 <- dat_POC[!apply(dat_POC[,c("logRR", "var", 
+                                      "depth.type" , 
+                                      "ccseason" , 
+                                      "tillage" ,
+                                      "cover.crop.category" , 
+                                      "maincrop" , 
+                                      "ag.C.inputs", 
+                                      "Temp")], 1, anyNA),]
+dat_MAOC1 <- dat_MAOC[!apply(dat_MAOC[,c("logRR", "var", 
+                                         "ccseason" , 
+                                         "cover.crop.category" , 
+                                         "ag.C.inputs" )], 1, anyNA),]
+dat_SOC1 <- dat_SOC[!apply(dat_SOC[,c("logRR", "var", 
+                                      "depth.type" ,
+                                      "ccseason" ,
+                                      "tillage",
+                                      "cover.crop.category" , 
+                                      "maincrop" , 
+                                      "ag.C.inputs",  
+                                      "Temp")], 1, anyNA),]
 
 
 
@@ -24,7 +41,7 @@ dat_SOC1 <- dat_SOC[!apply(dat_SOC[,c("logRR", "var", "depth.type" , "ccseason" 
 rma.glmulti <- function(formula, data, ...)
   rma(formula, var, data=data, method="ML", ...)
 
-res_POC <- glmulti(logRR ~ depth.type + ccseason + tillage + cover.crop.category + maincrop + ag.C.inputs + Temp, data=dat_POC1,
+res_POC <- glmulti(logRR ~ depth.type + ccseason + tillage + cover.crop.category + maincrop + ag.C.inputs + Temp + I(Temp^2), data=dat_POC1,
                level=1, fitfunction=rma.glmulti, crit="aicc", confsetsize=128)
 
 
@@ -45,7 +62,7 @@ unique(unlist(tet))-> allt_POC
 # importances
 sapply(allt_POC, function(res_POC) sum(ww[sapply(tet, function(t) res_POC%in%t)]))-> imp_POC
 allt_POC2 <- c("Soil depth", "Cover crop season", "Aboveground C inputs", 
-           "Tillage", "Mean annual temperature", "Cover crop type", "Cropping system")
+           "Tillage", "Temperature", "Cover crop type", "Cropping system")
 
 
 
@@ -56,7 +73,7 @@ allt_POC2 <- c("Soil depth", "Cover crop season", "Aboveground C inputs",
 rma.glmulti <- function(formula, data, ...)
   rma(formula, var, data=data, method="ML", ...)
 
-res_MAOC <- glmulti(logRR ~ ccseason + cover.crop.category + maincrop + ag.C.inputs, data=dat_MAOC1,
+res_MAOC <- glmulti(logRR ~ ccseason + cover.crop.category + ag.C.inputs, data=dat_MAOC1,
                    level=1, fitfunction=rma.glmulti, crit="aicc", confsetsize=128)
 
 
@@ -76,8 +93,7 @@ tet = lapply(res_MAOC@formulas, function(res_MAOC) sapply(attr(delete.response(t
 unique(unlist(tet))-> allt_MAOC
 # importances
 sapply(allt_MAOC, function(res_MAOC) sum(ww[sapply(tet, function(t) res_MAOC%in%t)]))-> imp_MAOC
-allt_MAOC2 <- c("Cover crop season", "Cropping system", "Aboveground C inputs", 
-                "Cover crop type")
+allt_MAOC2 <- c("Cover crop season", "Aboveground C inputs", "Cover crop type")
 
 
 
@@ -87,7 +103,7 @@ allt_MAOC2 <- c("Cover crop season", "Cropping system", "Aboveground C inputs",
 rma.glmulti <- function(formula, data, ...)
   rma(formula, var, data=data, method="ML", ...)
 
-res_SOC <- glmulti(logRR ~ depth.type + ccseason + tillage + cover.crop.category + maincrop + ag.C.inputs, data=dat_SOC1,
+res_SOC <- glmulti(logRR ~ depth.type + tillage + ccseason + cover.crop.category + maincrop + ag.C.inputs + Temp + I(Temp^2), data=dat_SOC1,
                    level=1, fitfunction=rma.glmulti, crit="aicc", confsetsize=128)
 
 
@@ -108,28 +124,37 @@ unique(unlist(tet))-> allt_SOC
 # importances
 sapply(allt_SOC, function(res_SOC) sum(ww[sapply(tet, function(t) res_SOC%in%t)]))-> imp_SOC
 allt_SOC2 <- c("Soil depth", "Cover crop season", "Aboveground C inputs", 
-               "Tillage","Cover crop type", "Cropping system")
+               "Temperature", "Tillage", "Cover crop type", "Cropping system")
 
 
+pocdat <- data.frame(name=allt_POC2, 
+                     val.poc=imp_POC)
+maocdat <- data.frame(name=allt_MAOC2, 
+                     val.maoc=imp_MAOC)
+socdat <- data.frame(name=allt_SOC2, 
+                     val.soc=imp_SOC)
 
+mdat <- merge(pocdat, maocdat, by="name", all=TRUE)
+mdat2 <- merge(mdat, socdat, by="name", all=TRUE)
 
+mdat2 <- mdat2[order(mdat2$val.poc),]
 
 # Plot
 
-jpeg("Figures/4_Variable-importance.jpeg", width = 2000, height = 1200, res=300)
+jpeg("Figures/7_Variable-importance.jpeg", width = 2000, height = 1200, res=300)
 
 par(oma=c(0,12,0,1), mfrow=c(1,3), mar=c(3,1,3,1))
 
-barplot(sort(imp_POC),
+barplot(mdat2$val.poc,
         xlab="",xlim=c(0,1), 
         ylab="",horiz=T,las=2, 
-        names.arg=allt_POC2[order(imp_POC)],
+        names.arg=mdat2$name,
         main="A) POC", font.main=1, las=1, mgp=c(1.75,0.5,0), tck=-0.05, xaxp=c(0,1,5),
         col="olivedrab4")
 box(lty = 'solid', col = 'black')
 abline(v=0.8, col="black", lty=2, cex=2)
 
-barplot(rev(c(NA, imp_MAOC[3], imp_MAOC[1], NA, NA, imp_MAOC[4], imp_MAOC[2])),
+barplot(mdat2$val.maoc,
         xlab="Relative importance",xlim=c(0,1), 
         ylab="",horiz=T,las=2, 
         names.arg=NA,
@@ -138,7 +163,7 @@ barplot(rev(c(NA, imp_MAOC[3], imp_MAOC[1], NA, NA, imp_MAOC[4], imp_MAOC[2])),
 box(lty = 'solid', col = 'black')
 abline(v=0.8, col="black", lty=2, cex=2)
 
-barplot(rev(c(imp_SOC[1], imp_SOC[3], imp_SOC[2], imp_SOC[4], NA, imp_SOC[5], imp_SOC[6])),
+barplot(mdat2$val.soc,
         xlab="",xlim=c(0,1), 
         ylab="",horiz=T,las=2, 
         names.arg=NA,

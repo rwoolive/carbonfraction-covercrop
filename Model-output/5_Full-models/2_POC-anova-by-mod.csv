@@ -1,7 +1,0 @@
-"","moderators","result"
-"1","depth","F(df1 = 4, df2 = 183) = 6.233, p-val = 0"
-"2","ccseason","F(df1 = 4, df2 = 183) = 3.268, p-val = 0.013"
-"3","tillage","F(df1 = 2, df2 = 183) = 0.183, p-val = 0.833"
-"4","ccadded","F(df1 = 5, df2 = 183) = 1.345, p-val = 0.247"
-"5","maincrop","F(df1 = 2, df2 = 183) = 0.125, p-val = 0.882"
-"6","agCinputs","F(df1 = 1, df2 = 183) = 15.209, p-val = 0"

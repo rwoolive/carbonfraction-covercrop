@@ -1,6 +1,0 @@
-"","moderators","result"
-"1","depth","F(df1 = 3, df2 = 75) = 1.149, p-val = 0.335"
-"2","ccseason","F(df1 = 3, df2 = 75) = 2.366, p-val = 0.078"
-"3","ccadded","F(df1 = 3, df2 = 75) = 0.334, p-val = 0.801"
-"4","maincrop","F(df1 = 2, df2 = 75) = 0.368, p-val = 0.693"
-"5","agCinputs","F(df1 = 1, df2 = 75) = 0.098, p-val = 0.755"

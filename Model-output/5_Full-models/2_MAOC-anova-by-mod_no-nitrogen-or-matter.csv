@@ -1,5 +1,0 @@
-"","moderators","result"
-"1","ccseason","F(df1 = 3, df2 = 76) = 2.282, p-val = 0.086"
-"2","ccadded","F(df1 = 3, df2 = 76) = 0.323, p-val = 0.809"
-"3","maincrop","F(df1 = 3, df2 = 76) = 0.501, p-val = 0.683"
-"4","agCinputs","F(df1 = 1, df2 = 76) = 0.013, p-val = 0.908"

@@ -4,7 +4,7 @@ library(plyr)
 
 # read in my data
 dat <- read.csv("Raw-data/4_metadata - final_withclimdat.csv")
-# select only c and organic matter based observations
+# select only c and organic matter based observations (exclude N or P based observations)
 dat <- dat[which(dat$rv %in% c("POC", "TOC", "MAOC", "SOC", "POM", "TOM", "SOM", "MAOM")),]
 
 dat$rv[which(dat$rv %in% c("OM", "SOM", "TOM"))] <- "SOM"
@@ -12,8 +12,127 @@ dat$rv[which(dat$rv %in% c("TOC", "SOC"))] <- "SOC"
 
 # set params
 xs <- range(dat$logRR)
-ys <- c(0,165)
-ymeans <- c(160, 140)
+ys <- c(0,120)
+ymeans <- c(110, 100)
+
+
+
+# show how cover-crop vs. control comparisons differ from high- vs. low-diversity comparisons
+dat$comp <- rep("cc vs. fallow", dim(dat)[1])
+dat$comp[which(dat$StudyID %in% c("Conc", "deCa", "Vier", "Zana"))] <- "high- vs. low-diversity cc"
+
+# POC
+mu <- ddply(dat[which(dat$rv %in% c("POC", "POM")),], 
+            "comp", summarise, grp.mean=mean(logRR), grp.sd=sd(logRR))
+
+pplot_comp <- ggplot(data=dat[which(dat$rv %in% c("POC", "POM")),], 
+                aes(x=logRR, fill=comp, color=comp)) + 
+  geom_histogram(position="identity", alpha=0.25, bins=25) +
+  theme_classic() +
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=comp),
+             linetype="dashed", size=0.5, show.legend = F)+
+  geom_vline(data=mu, aes(xintercept=grp.mean-grp.sd, color=comp),
+             linetype="dotted", size=0.5, show.legend = F)+ 
+  geom_vline(data=mu, aes(xintercept=grp.mean+grp.sd, color=comp),
+             linetype="dotted", size=0.5, show.legend = F)+ 
+  geom_text(data=mu, aes(x=grp.mean+0.1, color=comp, label=paste("Mean = ", round(grp.mean, 3))), 
+            y=ymeans, hjust = 0, show.legend = F) +
+  labs(fill="Comparison", y="Frequency", x="Effect size") +
+  guides(color=F)  +
+  theme(legend.position="bottom")+
+  scale_y_continuous(limits=ys, expand = c(0, 0)) +
+  scale_x_continuous(limits=xs, expand = c(0, 0)) +
+  scale_fill_manual(values=c("purple", "blue")) +
+  scale_color_manual(values=c("purple", "blue"))
+pplot_comp
+
+# MAOC
+mu <- ddply(dat[which(dat$rv %in% c("MAOC", "MAOM")),], 
+            "comp", summarise, grp.mean=mean(logRR), grp.sd=sd(logRR))
+
+mplot_comp <- ggplot(data=dat[which(dat$rv %in% c("MAOC", "MAOM")),], 
+                     aes(x=logRR, fill=comp, color=comp)) + 
+  geom_histogram(position="identity", alpha=0.25, bins=25) +
+  theme_classic() +
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=comp),
+             linetype="dashed", size=0.5, show.legend = F)+
+  geom_vline(data=mu, aes(xintercept=grp.mean-grp.sd, color=comp),
+             linetype="dotted", size=0.5, show.legend = F)+ 
+  geom_vline(data=mu, aes(xintercept=grp.mean+grp.sd, color=comp),
+             linetype="dotted", size=0.5, show.legend = F)+ 
+  geom_text(data=mu, aes(x=grp.mean+0.1, color=comp, label=paste("Mean = ", round(grp.mean, 3))), 
+            y=ymeans, hjust = 0, show.legend = F) +
+  labs(fill="Comparison", y="Frequency", x="Effect size") +
+  guides(color=F)  +
+  theme(legend.position="bottom")+
+  scale_y_continuous(limits=ys, expand = c(0, 0)) +
+  scale_x_continuous(limits=xs, expand = c(0, 0)) +
+  scale_fill_manual(values=c("purple", "blue")) +
+  scale_color_manual(values=c("purple", "blue"))
+mplot_comp
+
+# SOC
+mu <- ddply(dat[which(dat$rv %in% c("SOC", "SOM")),], 
+            "comp", summarise, grp.mean=mean(logRR), grp.sd=sd(logRR))
+
+splot_comp <- ggplot(data=dat[which(dat$rv %in% c("SOC", "SOM")),], 
+                     aes(x=logRR, fill=comp, color=comp)) + 
+  geom_histogram(position="identity", alpha=0.25, bins=25) +
+  theme_classic() +
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=comp),
+             linetype="dashed", size=0.5, show.legend = F)+
+  geom_vline(data=mu, aes(xintercept=grp.mean-grp.sd, color=comp),
+             linetype="dotted", size=0.5, show.legend = F)+ 
+  geom_vline(data=mu, aes(xintercept=grp.mean+grp.sd, color=comp),
+             linetype="dotted", size=0.5, show.legend = F)+ 
+  geom_text(data=mu, aes(x=grp.mean+0.1, color=comp, label=paste("Mean = ", round(grp.mean, 3))), 
+            y=ymeans, hjust = 0, show.legend = F) +
+  labs(fill="Comparison", y="Frequency", x="Effect size") +
+  guides(color=F)  +
+  theme(legend.position="bottom")+
+  scale_y_continuous(limits=ys, expand = c(0, 0)) +
+  scale_x_continuous(limits=xs, expand = c(0, 0)) +
+  scale_fill_manual(values=c("purple", "blue")) +
+  scale_color_manual(values=c("purple", "blue"))
+splot_comp
+
+
+figure_comp <- ggpubr::ggarrange(pplot_comp, mplot_comp, splot_comp,
+                                 common.legend = TRUE,legend = "bottom",
+                                 label.x = 0.05,labels = c("A) POC", "B) MAOC", "C) SOC"),
+                                 ncol = 1, nrow = 3)
+
+jpeg("Figures/A.2_histogram by comp type.jpeg", width=4, height=8, units="in",res=600)
+figure_comp
+dev.off()
+
+
+# remove comparisons of high- vs. low-diversity
+dat <- dat[-which(dat$comp=="high- vs. low-diversity cc"),]
+sort((unique(dat$StudyID)))
+length((unique(dat$StudyID)))
+dim(dat)
+
+
+# remove outliers using rosners test
+boxplot(dat$logRR,ylab = "hwy")
+# install.packages("EnvStats")
+library(EnvStats)
+test <- rosnerTest(dat$logRR, k = 25)
+test
+length(which(test$all.stats$Outlier==TRUE)) # 24 outliers
+out <- test$all.stats$Obs.Num[which(test$all.stats$Outlier==TRUE)]
+length(unique(dat$StudyID[out])) # outliers come from 10 studies
+hist(dat$logRR[out]) # histogram of outliers
+hist(dat$percent.change[out]) # histogram of outliers
+hist(dat$logRR[-out]) # histogram of non-outliers
+hist(dat$percent.change[-out]) # histogram of non-outliers
+hist(dat$percent.change) # histogram of everything
+outlierdat <- dat[out,]; write.csv(outlierdat, "Processed-data/0_outliers.csv") # get outlier dataset
+dat <- dat[-out,] # remove outliers from dataset
+hist(dat$logRR)
+length(unique(dat$StudyID)) # 49 studies represented in remaining data
+dim(dat) # and 926 observations
 
 
 
@@ -61,6 +180,8 @@ splot0
 
 
 
+### OM vs. OC
+
 # panels D-F
 mu <- ddply(dat[which(dat$rv %in% c("POC", "POM")),], 
             "rv", summarise, grp.mean=mean(logRR), grp.sd=sd(logRR))
@@ -100,7 +221,7 @@ mplot <- ggplot(data=dat[which(dat$rv %in% c("MAOC", "MAOM")),],
              linetype="dotted", size=0.5, show.legend = F)+ 
   geom_vline(data=mu, aes(xintercept=grp.mean+grp.sd, color=rv),
              linetype="dotted", size=0.5, show.legend = F)+ 
-  geom_text(data=mu, aes(x=grp.mean+0.1, color=rv, label=paste("Mean = ", round(grp.mean, 3))), 
+  geom_text(data=mu, aes(x=grp.mean+0.05, color=rv, label=paste("Mean = ", round(grp.mean, 3))), 
            y=ymeans, hjust = 0, show.legend = F) +
   labs(fill="Initial pool", y="Frequency", x="Effect size", x="Effect size") +
   guides(color=F)  +
@@ -137,10 +258,6 @@ splot
 
 
 ### units
-# set params
-xs <- range(dat$logRR)
-ys <- c(0,165)
-ymeans <- c(160, 140)
 
 # panels G-I
 mu <- ddply(dat[which(dat$rv %in% c("POC", "POM")),], 
@@ -162,8 +279,8 @@ pplotu <- ggplot(data=dat[which(dat$rv %in% c("POC", "POM")),],
   guides(color=F)  +
   theme(legend.position="bottom")+
   scale_y_continuous(limits=ys, expand = c(0, 0)) +
-  scale_fill_manual(values=c("goldenrod", "darkgreen")) +
-  scale_color_manual(values=c("goldenrod", "darkgreen"))
+  scale_fill_manual(values=c("darkorange2", "darkgreen")) +
+  scale_color_manual(values=c("darkorange2", "darkgreen"))
 pplotu
 
 
@@ -187,8 +304,8 @@ mplotu <- ggplot(data=dat[which(dat$rv %in% c("MAOC", "MAOM")),],
   guides(color=F)  +
   theme(legend.position="bottom") +
   scale_y_continuous(limits=ys, expand = c(0, 0)) +
-  scale_fill_manual(values=c("goldenrod", "darkgreen")) +
-  scale_color_manual(values=c("goldenrod", "darkgreen"))
+  scale_fill_manual(values=c("darkorange2", "darkgreen")) +
+  scale_color_manual(values=c("darkorange2", "darkgreen"))
 mplotu
 
 
@@ -214,8 +331,8 @@ splotu <- ggplot(data=dat[which(dat$rv %in% c("SOC", "SOM")),],
   guides(color=F)  + 
   theme(legend.position="bottom")+
   scale_y_continuous(limits=ys, expand = c(0, 0)) +
-  scale_fill_manual(values=c("goldenrod", "darkgreen")) +
-  scale_color_manual(values=c("goldenrod", "darkgreen"))
+  scale_fill_manual(values=c("darkorange2", "darkgreen")) +
+  scale_color_manual(values=c("darkorange2", "darkgreen"))
 splotu
 
 
@@ -244,3 +361,6 @@ figure3
 jpeg("Figures/A.2_histogram by rv type and unit.jpeg", width=10, height=8, units="in",res=600)
 figure3
 dev.off()
+
+
+write.csv(dat, "Raw-data/4_metadata - final_withclimdat_2.csv")

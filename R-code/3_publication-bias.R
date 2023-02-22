@@ -5,9 +5,12 @@ library(metafor) # version 3.0-2
 
 
 
-dat_POC <- read.csv("Processed-data/POC_no-nitrogen.csv")
-dat_MAOC <- read.csv("Processed-data/MAOC_no-nitrogen.csv")
-dat_SOC <- read.csv("Processed-data/SOC_no-nitrogen.csv")
+dat_POC <- read.csv("Processed-data/POC.csv")
+dat_MAOC <- read.csv("Processed-data/MAOC.csv")
+dat_SOC <- read.csv("Processed-data/SOC.csv")
+
+
+
 
 #  POC model
 dat <- dat_POC
