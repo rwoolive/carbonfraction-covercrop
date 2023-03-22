@@ -125,9 +125,9 @@ xmaxim <- 85
 texcol <- "black"
 modsize<-3
 
-POC_maincat1$signif <- rep(1, dim(POC_maincat1)[1]); POC_maincat1$signif[which(POC_maincat1$lci<0)] <- 0; POC_maincat1$signif <- as.factor(POC_maincat1$signif)
-MAOC_maincat1$signif <- rep(1, dim(MAOC_maincat1)[1]); MAOC_maincat1$signif[which(MAOC_maincat1$lci<0)] <- 0; MAOC_maincat1$signif <- as.factor(MAOC_maincat1$signif)
-SOC_maincat1$signif <- rep(1, dim(SOC_maincat1)[1]); SOC_maincat1$signif[which(SOC_maincat1$lci<0)] <- 0; SOC_maincat1$signif <- as.factor(SOC_maincat1$signif)
+POC_maincat1$signif <- rep("*", dim(POC_maincat1)[1]); POC_maincat1$signif[which(POC_maincat1$lci<0)] <- ""
+MAOC_maincat1$signif <- rep("*", dim(MAOC_maincat1)[1]); MAOC_maincat1$signif[which(MAOC_maincat1$lci<0)] <- ""
+SOC_maincat1$signif <- rep("*", dim(SOC_maincat1)[1]); SOC_maincat1$signif[which(SOC_maincat1$lci<0)] <- ""
 
 
 plot2 <- ggplot(data=POC_maincat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
@@ -166,11 +166,11 @@ plot2 <- ggplot(data=POC_maincat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, x
            label=c("Overall", "Depth", "Cover crop\nseason", "Tillage"), size=modsize) +
   # add sample sizes
   annotate(geom= "text", x=POC_maincat1$uci.mpc+4, y=c(POC_maincat1$index+dist), 
-           hjust = 0, size=2.25, label=paste0(POC_maincat1$nobs, " / ", POC_maincat1$nstudy)) +
+           hjust = 0, size=2.25, label=paste0(POC_maincat1$nobs, " / ", POC_maincat1$nstudy, " ", POC_maincat1$signif)) +
   annotate(geom= "text", x=MAOC_maincat1$uci.mpc+4, y=c(MAOC_maincat1$index), 
-           hjust = 0, size=2.25, label=paste0(MAOC_maincat1$nobs, " / ", MAOC_maincat1$nstudy)) +
+           hjust = 0, size=2.25, label=paste0(MAOC_maincat1$nobs, " / ", MAOC_maincat1$nstudy, " ", MAOC_maincat1$signif)) +
   annotate(geom= "text", x=SOC_maincat1$uci.mpc+4, y=c(SOC_maincat1$index-dist), 
-           hjust = 0, size=2.25, label=paste0(SOC_maincat1$nobs, " / ", SOC_maincat1$nstudy))
+           hjust = 0, size=2.25, label=paste0(SOC_maincat1$nobs, " / ", SOC_maincat1$nstudy, " ", SOC_maincat1$signif))
 
 jpeg("Figures/2_overall_depth_season_tillage.jpeg", width=5, height=6.2, units="in",res=600)
 plot2
@@ -184,6 +184,10 @@ pcol <- "olivedrab4"
 mcol <- "orange4"
 scol <- "black"
 xmaxim <- 85
+
+POC_maincat2$signif <- rep("*", dim(POC_maincat2)[1]); POC_maincat2$signif[which(POC_maincat2$lci<0)] <- ""
+MAOC_maincat2$signif <- rep("*", dim(MAOC_maincat2)[1]); MAOC_maincat2$signif[which(MAOC_maincat2$lci<0)] <- ""
+SOC_maincat2$signif <- rep("*", dim(SOC_maincat2)[1]); SOC_maincat2$signif[which(SOC_maincat2$lci<0)] <- ""
 
 plot3 <- ggplot(data=POC_maincat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
   # add dividers
@@ -220,11 +224,11 @@ plot3 <- ggplot(data=POC_maincat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, x
            label=c("Cover crop\ntype", "Cropping\nsystem"), size=modsize) +
   # add sample sizes
   annotate(geom= "text", x=POC_maincat2$uci.mpc+4, y=c(POC_maincat2$index+dist), 
-           hjust = 0, size=2.25, label=paste0(POC_maincat2$nobs, " / ", POC_maincat2$nstudy)) +
+           hjust = 0, size=2.25, label=paste0(POC_maincat2$nobs, " / ", POC_maincat2$nstudy, " ", POC_maincat2$signif)) +
   annotate(geom= "text", x=MAOC_maincat2$uci.mpc+4, y=c(MAOC_maincat2$index), 
-           hjust = 0, size=2.25, label=paste0(MAOC_maincat2$nobs, " / ", MAOC_maincat2$nstudy)) +
+           hjust = 0, size=2.25, label=paste0(MAOC_maincat2$nobs, " / ", MAOC_maincat2$nstudy, " ", MAOC_maincat2$signif)) +
   annotate(geom= "text", x=SOC_maincat2$uci.mpc+4, y=c(SOC_maincat2$index-dist), 
-           hjust = 0, size=2.25, label=paste0(SOC_maincat2$nobs, " / ", SOC_maincat2$nstudy))
+           hjust = 0, size=2.25, label=paste0(SOC_maincat2$nobs, " / ", SOC_maincat2$nstudy, " ", SOC_maincat2$signif))
 
 jpeg("Figures/6_maincrop covercrop.jpeg", width=5, height=6.4, units="in",res=600)
 plot3
@@ -246,6 +250,9 @@ scol <- "black"
 xmaxim <- 85
 
 
+POC_suppcat2$signif <- rep("*", dim(POC_suppcat2)[1]); POC_suppcat2$signif[which(POC_suppcat2$lci<0)] <- ""
+MAOC_suppcat2$signif <- rep("*", dim(MAOC_suppcat2)[1]); MAOC_suppcat2$signif[which(MAOC_suppcat2$lci<0)] <- ""
+SOC_suppcat2$signif <- rep("*", dim(SOC_suppcat2)[1]); SOC_suppcat2$signif[which(SOC_suppcat2$lci<0)] <- ""
 
 plots2 <- ggplot(data=POC_suppcat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, xmax=uci.mpc)) +
   # add dividers
@@ -281,9 +288,9 @@ plots2 <- ggplot(data=POC_suppcat2, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, 
            label=c("Fractionation\nmethod", "Dispersing\nagent", "Measurement"), size=modsize) +
   # add sample sizes
   annotate(geom= "text", x=POC_suppcat2$uci.mpc+4, y=c(POC_suppcat2$index+dist), 
-           hjust = 0, size=2, label=paste0(POC_suppcat2$nobs, " / ", POC_suppcat2$nstudy)) +
+           hjust = 0, size=2, label=paste0(POC_suppcat2$nobs, " / ", POC_suppcat2$nstudy, " ", POC_suppcat2$signif)) +
   annotate(geom= "text", x=MAOC_suppcat2$uci.mpc+4, y=c(MAOC_suppcat2$index), 
-           hjust = 0, size=2, label=paste0(MAOC_suppcat2$nobs, " / ", MAOC_suppcat2$nstudy)) #+
+           hjust = 0, size=2, label=paste0(MAOC_suppcat2$nobs, " / ", MAOC_suppcat2$nstudy, " ", MAOC_suppcat2$signif)) #+
   #annotate(geom= "text", x=SOC_suppcat2$uci.mpc+4, y=c(SOC_suppcat2$index-dist), 
   #         hjust = 0, size=2, label=paste0(SOC_suppcat2$nobs, " / ", SOC_suppcat2$nstudy))
 
@@ -304,6 +311,10 @@ mcol <- "orange4"
 scol <- "black"
 xmaxim <- 97
 
+
+POC_suppcat1$signif <- rep("*", dim(POC_suppcat1)[1]); POC_suppcat1$signif[which(POC_suppcat1$lci<0)] <- ""
+MAOC_suppcat1$signif <- rep("*", dim(MAOC_suppcat1)[1]); MAOC_suppcat1$signif[which(MAOC_suppcat1$lci<0)] <- ""
+SOC_suppcat1$signif <- rep("*", dim(SOC_suppcat1)[1]); SOC_suppcat1$signif[which(SOC_suppcat1$lci<0)] <- ""
 
 #MAOC_suppcat1[which(MAOC_suppcat1$group %in% c("soilorder.Oxisols", "soilorder.Ultisols","Continent.NorthAmerica")),c("mean.mpc", "lci.mpc", "uci.mpc")] <- NA
 
@@ -341,11 +352,11 @@ plots1 <- ggplot(data=POC_suppcat1, aes(y=index+dist, x=mean.mpc, xmin=lci.mpc, 
            label=c("Soil type", "Continent", "Soil collection\nseason"), size=modsize) +
   # add sample sizes
   annotate(geom= "text", x=POC_suppcat1$uci.mpc+4, y=c(POC_suppcat1$index+dist), 
-           hjust = 0, size=2, label=paste0(POC_suppcat1$nobs, " / ", POC_suppcat1$nstudy)) +
+           hjust = 0, size=2, label=paste0(POC_suppcat1$nobs, " / ", POC_suppcat1$nstudy, " ", POC_suppcat1$signif)) +
   annotate(geom= "text", x=MAOC_suppcat1$uci.mpc+4, y=c(MAOC_suppcat1$index), 
-           hjust = 0, size=2, label=paste0(MAOC_suppcat1$nobs, " / ", MAOC_suppcat1$nstudy)) +
+           hjust = 0, size=2, label=paste0(MAOC_suppcat1$nobs, " / ", MAOC_suppcat1$nstudy, " ", MAOC_suppcat1$signif)) +
   annotate(geom= "text", x=SOC_suppcat1$uci.mpc+4, y=c(SOC_suppcat1$index-dist), 
-           hjust = 0, size=2, label=paste0(SOC_suppcat1$nobs, " / ", SOC_suppcat1$nstudy))
+           hjust = 0, size=2, label=paste0(SOC_suppcat1$nobs, " / ", SOC_suppcat1$nstudy, " ", SOC_suppcat1$signif))
 
 jpeg("Figures/A.7_soil order-continent-sampling season.jpeg", width=4.5, height=7, units="in",res=600)
 plots1

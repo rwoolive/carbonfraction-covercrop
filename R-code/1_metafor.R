@@ -183,13 +183,12 @@ dat_MAOC <- read.csv("Processed-data/MAOC.csv")
 dat_SOC <- read.csv("Processed-data/SOC.csv")
 
 
-mean(na.omit(dat_POC$duration))
-mean(na.omit(dat_MAOC$duration))
-mean(na.omit(dat_SOC$duration))
+median(na.omit(dat_POC$duration))
+median(na.omit(dat_MAOC$duration))
+median(na.omit(dat_SOC$duration))
 
 
 ### data exploration
-
 
 datcm <- data.frame(type=c("carbon", "matter"),
                     n_POC=c(length(dat_POC$logRR[which(dat_POC$rv == "POC")]), length(dat_POC$logRR[which(dat_POC$rv == "POM")])),
@@ -375,7 +374,7 @@ SOC_depth <- ggplot()+
 depthfig <- ggpubr::ggarrange(POC_depth, MAOC_depth, SOC_depth, ncol = 1, nrow = 3)
 depthfig
 #ggsave("Figures/S5_depth distribution by obsevrvation.png", units="in", height=8, width=8)
-jpeg("Figures/A.5_depth distribution by obsevrvation.jpeg", width=8, height=8, units="in",res=600)
+jpeg("Figures/A.4_depth distribution by obsevrvation.jpeg", width=8, height=8, units="in",res=600)
 depthfig
 dev.off()
 

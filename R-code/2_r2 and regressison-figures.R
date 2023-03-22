@@ -677,7 +677,7 @@ xmin_ag.C.inputs <- min(na.omit(rawdat$ag.C.inputs))
 xmax_ag.C.inputs <- max(na.omit(rawdat$ag.C.inputs))
 p_ag.C.inputs <- ggplot(rawdat, aes(x = ag.C.inputs, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_ag.C.inputs], linetype=lty_ag.C.inputs, aes(x = xmin_ag.C.inputs, xend = xmax_ag.C.inputs, y = m_ag.C.inputs*xmin_ag.C.inputs + b_ag.C.inputs , yend = m_ag.C.inputs*xmax_ag.C.inputs + b_ag.C.inputs))  +
-  annotate(geom="text", x=xmax_ag.C.inputs, y=ymax ,hjust=1, label=paste("y = ", m_ag.C.inputs, "*x", "+", b_ag.C.inputs)) +  labs(x="Aboveground C inputs (Mg ha-1 yr-1)", y="Log reponse ratio") +
+  annotate(geom="text", x=xmax_ag.C.inputs, y=ymax ,hjust=1, label=paste("y = ", m_ag.C.inputs, "*x", "+", b_ag.C.inputs)) +  labs(x=expression(paste("Aboveground C inputs (Mg ha"^-1," yr"^-1,")")), y="Log reponse ratio") +
   annotate(geom="text", x=xmax_ag.C.inputs, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_ag.C.inputs)) + theme_bw()
 p_ag.C.inputs
 
@@ -702,20 +702,6 @@ p_duration <- ggplot(rawdat, aes(x = duration, y = logRR))+ geom_hline(yintercep
   annotate(geom="text", x=xmax_duration, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_duration)) + theme_bw()
 p_duration
 
-#  ~ duration < 15 yrs
-ref_duration <- which(dat$resp=="POC" & dat$mod=="duration")[2]
-m_duration <- round(dat$m[ref_duration], roundto)
-b_duration <- round(dat$b[ref_duration], roundto)
-r_duration <- as.character(round(dat$r2[ref_duration], roundto))
-lty_duration <- dat$linetype[ref_duration]
-xmin_duration <- min(na.omit(rawdat$duration))
-xmax_duration <- max(na.omit(rawdat$duration[-which(rawdat$duration>15)]))
-p_duration2poc <- ggplot(rawdat[-which(rawdat$duration>15),], aes(x = duration, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
-  geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_duration], linetype=lty_duration, aes(x = xmin_duration, xend = xmax_duration, y = m_duration*xmin_duration + b_duration , yend = m_duration*xmax_duration + b_duration))  +
-  annotate(geom="text", x=xmax_duration, y=ymax ,hjust=1, label=paste("y = ", m_duration, "*x", "+", b_duration)) +  labs(x="Duration (yrs)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_duration, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_duration)) + theme_bw()
-p_duration2poc
-
 #  ~ nfert
 ref_nfert <- which(dat$resp=="POC" & dat$mod=="nfert")
 m_nfert <- round(dat$m[ref_nfert], roundto)
@@ -726,7 +712,7 @@ xmin_nfert <- min(na.omit(rawdat$nfert))
 xmax_nfert <- max(na.omit(rawdat$nfert))
 p_nfert <- ggplot(rawdat, aes(x = nfert, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_nfert], linetype=lty_nfert, aes(x = xmin_nfert, xend = xmax_nfert, y = m_nfert*xmin_nfert + b_nfert , yend = m_nfert*xmax_nfert + b_nfert))  +
-  annotate(geom="text", x=xmax_nfert, y=ymax ,hjust=1, label=paste("y = ", m_nfert, "*x", "+", b_nfert)) +  labs(x="N fertilization (kg ha-1 yr-1)", y="Log reponse ratio") +
+  annotate(geom="text", x=xmax_nfert, y=ymax ,hjust=1, label=paste("y = ", m_nfert, "*x", "+", b_nfert)) +  labs(x=expression(paste("N fertilization (kg ha"^-1," yr"^-1,")")), y="Log reponse ratio") +
   annotate(geom="text", x=xmax_nfert, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_nfert)) + theme_bw()
 p_nfert
 
@@ -889,7 +875,7 @@ xmin_ag.C.inputs <- min(na.omit(rawdat$ag.C.inputs))
 xmax_ag.C.inputs <- max(na.omit(rawdat$ag.C.inputs))
 p_ag.C.inputs <- ggplot(rawdat, aes(x = ag.C.inputs, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_ag.C.inputs], linetype=lty_ag.C.inputs, aes(x = xmin_ag.C.inputs, xend = xmax_ag.C.inputs, y = m_ag.C.inputs*xmin_ag.C.inputs + b_ag.C.inputs , yend = m_ag.C.inputs*xmax_ag.C.inputs + b_ag.C.inputs))  +
-  annotate(geom="text", x=xmax_ag.C.inputs, y=ymax ,hjust=1, label=paste("y = ", m_ag.C.inputs, "*x", "+", b_ag.C.inputs)) +  labs(x="Aboveground C inputs (Mg ha-1 yr-1)", y="Log reponse ratio") +
+  annotate(geom="text", x=xmax_ag.C.inputs, y=ymax ,hjust=1, label=paste("y = ", m_ag.C.inputs, "*x", "+", b_ag.C.inputs)) +  labs(x=expression(paste("Aboveground C inputs (Mg ha"^-1," yr"^-1,")")), y="Log reponse ratio") +
   annotate(geom="text", x=xmax_ag.C.inputs, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_ag.C.inputs)) + theme_bw()
 p_ag.C.inputs
 
@@ -901,7 +887,7 @@ p_ag.C.inputs
 (exp(m_ag.C.inputs*5 + b_ag.C.inputs)-1)*100 #  22.59303
 
 #  ~ duration
-ref_duration <- which(dat$resp=="MAOC" & dat$mod=="duration")
+ref_duration <- which(dat$resp=="MAOC" & dat$mod=="duration")[1]
 m_duration <- round(dat$m[ref_duration], roundto)
 b_duration <- round(dat$b[ref_duration], roundto)
 r_duration <- as.character(round(dat$r2[ref_duration], roundto))
@@ -914,20 +900,6 @@ p_duration <- ggplot(rawdat, aes(x = duration, y = logRR))+ geom_hline(yintercep
   annotate(geom="text", x=xmax_duration, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_duration)) + theme_bw()
 p_duration
 
-#  ~ duration < 15 yrs
-ref_duration <- which(dat$resp=="MAOC" & dat$mod=="duration")[2]
-m_duration <- round(dat$m[ref_duration], roundto)
-b_duration <- round(dat$b[ref_duration], roundto)
-r_duration <- as.character(round(dat$r2[ref_duration], roundto))
-lty_duration <- dat$linetype[ref_duration]
-xmin_duration <- min(na.omit(rawdat$duration))
-xmax_duration <- max(na.omit(rawdat$duration[-which(rawdat$duration>15)]))
-p_duration2maoc <- ggplot(rawdat[-which(rawdat$duration>15),], aes(x = duration, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
-  geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_duration], linetype=lty_duration, aes(x = xmin_duration, xend = xmax_duration, y = m_duration*xmin_duration + b_duration , yend = m_duration*xmax_duration + b_duration))  +
-  annotate(geom="text", x=xmax_duration, y=ymax ,hjust=1, label=paste("y = ", m_duration, "*x", "+", b_duration)) +  labs(x="Duration (yrs)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_duration, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_duration)) + theme_bw()
-p_duration2maoc
-
 #  ~ nfert
 ref_nfert <- which(dat$resp=="MAOC" & dat$mod=="nfert")
 m_nfert <- round(dat$m[ref_nfert], roundto)
@@ -938,7 +910,7 @@ xmin_nfert <- min(na.omit(rawdat$nfert))
 xmax_nfert <- max(na.omit(rawdat$nfert))
 p_nfert <- ggplot(rawdat, aes(x = nfert, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_nfert], linetype=lty_nfert, aes(x = xmin_nfert, xend = xmax_nfert, y = m_nfert*xmin_nfert + b_nfert , yend = m_nfert*xmax_nfert + b_nfert))  +
-  annotate(geom="text", x=xmax_nfert, y=ymax ,hjust=1, label=paste("y = ", m_nfert, "*x", "+", b_nfert)) +  labs(x="N fertilization (kg ha-1 yr-1)", y="Log reponse ratio") +
+  annotate(geom="text", x=xmax_nfert, y=ymax ,hjust=1, label=paste("y = ", m_nfert, "*x", "+", b_nfert)) +  labs(x=expression(paste("N fertilization (kg ha"^-1," yr"^-1,")")), y="Log reponse ratio") +
   annotate(geom="text", x=xmax_nfert, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_nfert)) + theme_bw()
 p_nfert
 
@@ -1012,7 +984,7 @@ xmax_sand <- max(na.omit(rawdat$sand))
 p_sand <- ggplot(rawdat, aes(x = sand, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_sand], linetype=lty_sand, aes(x = xmin_sand, xend = xmax_sand, y = m_sand*xmin_sand + b_sand , yend = m_sand*xmax_sand + b_sand))  +
   annotate(geom="text", x=xmax_sand, y=ymax ,hjust=1, label=paste("y = ", m_sand, "*x", "+", b_sand)) +  labs(x="Baseline sand (%)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_sand, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_sand)) + theme_bw()
+  annotate(geom="text", x=xmax_sand, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_sand)) + theme_bw()
 p_sand 
 
 #  ~ silt
@@ -1026,7 +998,7 @@ xmax_silt <- max(na.omit(rawdat$silt))
 p_silt <- ggplot(rawdat, aes(x = silt, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_silt], linetype=lty_silt, aes(x = xmin_silt, xend = xmax_silt, y = m_silt*xmin_silt + b_silt , yend = m_silt*xmax_silt + b_silt))  +
   annotate(geom="text", x=xmax_silt, y=ymax ,hjust=1, label=paste("y = ", m_silt, "*x", "+", b_silt)) +  labs(x="Baseline silt (%)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_silt, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_silt)) + theme_bw()
+  annotate(geom="text", x=xmax_silt, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_silt)) + theme_bw()
 p_silt 
 
 #  ~ clay
@@ -1040,7 +1012,7 @@ xmax_clay <- max(na.omit(rawdat$clay))
 p_clay <- ggplot(rawdat, aes(x = clay, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_clay], linetype=lty_clay, aes(x = xmin_clay, xend = xmax_clay, y = m_clay*xmin_clay + b_clay , yend = m_clay*xmax_clay + b_clay))  +
   annotate(geom="text", x=xmax_clay, y=ymax ,hjust=1, label=paste("y = ", m_clay, "*x", "+", b_clay)) +  labs(x="Baseline clay (%)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_clay, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_clay)) + theme_bw()
+  annotate(geom="text", x=xmax_clay, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_clay)) + theme_bw()
 p_clay 
 
 #  ~ toc
@@ -1054,7 +1026,7 @@ xmax_toc <- max(na.omit(rawdat$toc))
 p_toc <- ggplot(rawdat, aes(x = toc, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_toc], linetype=lty_toc, aes(x = xmin_toc, xend = xmax_toc, y = m_toc*xmin_toc + b_toc , yend = m_toc*xmax_toc + b_toc))  +
   annotate(geom="text", x=xmax_toc, y=ymax ,hjust=1, label=paste("y = ", m_toc, "*x", "+", b_toc)) +  labs(x="Baseline SOC (%)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_toc, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_toc)) + theme_bw()
+  annotate(geom="text", x=xmax_toc, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_toc)) + theme_bw()
 p_toc 
 
 
@@ -1069,7 +1041,7 @@ xmax_ph <- max(na.omit(rawdat$ph))
 p_ph <- ggplot(rawdat, aes(x = ph, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_ph], linetype=lty_ph, aes(x = xmin_ph, xend = xmax_ph, y = m_ph*xmin_ph + b_ph , yend = m_ph*xmax_ph + b_ph))  +
   annotate(geom="text", x=xmax_ph, y=ymax ,hjust=1, label=paste("y = ", m_ph, "*x", "+", b_ph)) +  labs(x="Baseline pH", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_ph, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_ph)) + theme_bw()
+  annotate(geom="text", x=xmax_ph, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_ph)) + theme_bw()
 p_ph 
 
 #  ~ species.added
@@ -1083,7 +1055,7 @@ xmax_species.added <- max(na.omit(rawdat$species.added))
 p_species.added <- ggplot(rawdat, aes(x = species.added, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_species.added], linetype=lty_species.added, aes(x = xmin_species.added, xend = xmax_species.added, y = m_species.added*xmin_species.added + b_species.added , yend = m_species.added*xmax_species.added + b_species.added))  +
   annotate(geom="text", x=xmax_species.added, y=ymax ,hjust=1, label=paste("y = ", m_species.added, "*x", "+", b_species.added)) +  labs(x="Number of species added", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_species.added, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_species.added)) + theme_bw()
+  annotate(geom="text", x=xmax_species.added, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_species.added)) + theme_bw()
 p_species.added
 
 #  ~ ag.C.inputs
@@ -1096,12 +1068,12 @@ xmin_ag.C.inputs <- min(na.omit(rawdat$ag.C.inputs))
 xmax_ag.C.inputs <- max(na.omit(rawdat$ag.C.inputs))
 p_ag.C.inputs <- ggplot(rawdat, aes(x = ag.C.inputs, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_ag.C.inputs], linetype=lty_ag.C.inputs, aes(x = xmin_ag.C.inputs, xend = xmax_ag.C.inputs, y = m_ag.C.inputs*xmin_ag.C.inputs + b_ag.C.inputs , yend = m_ag.C.inputs*xmax_ag.C.inputs + b_ag.C.inputs))  +
-  annotate(geom="text", x=xmax_ag.C.inputs, y=ymax ,hjust=1, label=paste("y = ", m_ag.C.inputs, "*x", "+", b_ag.C.inputs)) +  labs(x="Aboveground C inputs (Mg ha-1 yr-1)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_ag.C.inputs, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_ag.C.inputs)) + theme_bw()
+  annotate(geom="text", x=xmax_ag.C.inputs, y=ymax ,hjust=1, label=paste("y = ", m_ag.C.inputs, "*x", "+", b_ag.C.inputs)) +  labs(x=expression(paste("Aboveground C inputs (Mg ha"^-1," yr"^-1,")")), y="Log reponse ratio") +
+  annotate(geom="text", x=xmax_ag.C.inputs, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_ag.C.inputs)) + theme_bw()
 p_ag.C.inputs
 
 #  ~ duration
-ref_duration <- which(dat$resp=="SOC" & dat$mod=="duration")
+ref_duration <- which(dat$resp=="SOC" & dat$mod=="duration")[1]
 m_duration <- round(dat$m[ref_duration], roundto)
 b_duration <- round(dat$b[ref_duration], roundto)
 r_duration <- as.character(round(dat$r2[ref_duration], roundto))
@@ -1111,22 +1083,10 @@ xmax_duration <- max(na.omit(rawdat$duration))
 p_duration <- ggplot(rawdat, aes(x = duration, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_duration], linetype=lty_duration, aes(x = xmin_duration, xend = xmax_duration, y = m_duration*xmin_duration + b_duration , yend = m_duration*xmax_duration + b_duration))  +
   annotate(geom="text", x=xmax_duration, y=ymax ,hjust=1, label=paste("y = ", m_duration, "*x", "+", b_duration)) +  labs(x="Duration (yrs)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_duration, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_duration)) + theme_bw()
+  annotate(geom="text", x=xmax_duration, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_duration)) + theme_bw()
 p_duration
 
-#  ~ duration < 15 yrs
-ref_duration <- which(dat$resp=="SOC" & dat$mod=="duration")[2]
-m_duration <- round(dat$m[ref_duration], roundto)
-b_duration <- round(dat$b[ref_duration], roundto)
-r_duration <- as.character(round(dat$r2[ref_duration], roundto))
-lty_duration <- dat$linetype[ref_duration]
-xmin_duration <- min(na.omit(rawdat$duration))
-xmax_duration <- max(na.omit(rawdat$duration[-which(rawdat$duration>15)]))
-p_duration2soc <- ggplot(rawdat[-which(rawdat$duration>15),], aes(x = duration, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
-  geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_duration], linetype=lty_duration, aes(x = xmin_duration, xend = xmax_duration, y = m_duration*xmin_duration + b_duration , yend = m_duration*xmax_duration + b_duration))  +
-  annotate(geom="text", x=xmax_duration, y=ymax ,hjust=1, label=paste("y = ", m_duration, "*x", "+", b_duration)) +  labs(x="Duration (yrs)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_duration, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_duration)) + theme_bw()
-p_duration2soc
+
 
 #  ~ nfert
 ref_nfert <- which(dat$resp=="SOC" & dat$mod=="nfert")
@@ -1138,8 +1098,8 @@ xmin_nfert <- min(na.omit(rawdat$nfert))
 xmax_nfert <- max(na.omit(rawdat$nfert))
 p_nfert <- ggplot(rawdat, aes(x = nfert, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_nfert], linetype=lty_nfert, aes(x = xmin_nfert, xend = xmax_nfert, y = m_nfert*xmin_nfert + b_nfert , yend = m_nfert*xmax_nfert + b_nfert))  +
-  annotate(geom="text", x=xmax_nfert, y=ymax ,hjust=1, label=paste("y = ", m_nfert, "*x", "+", b_nfert)) +  labs(x="N fertilization (kg ha-1 yr-1)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_nfert, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_nfert)) + theme_bw()
+  annotate(geom="text", x=xmax_nfert, y=ymax ,hjust=1, label=paste("y = ", m_nfert, "*x", "+", b_nfert)) +  labs(x=expression(paste("N fertilization (kg ha"^-1," yr"^-1,")")), y="Log reponse ratio") +
+  annotate(geom="text", x=xmax_nfert, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_nfert)) + theme_bw()
 p_nfert
 
 #  ~ Temp
@@ -1153,7 +1113,7 @@ xmax_Temp <- max(na.omit(rawdat$Temp))
 p_Temp <- ggplot(rawdat, aes(x = Temp, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_Temp], linetype=lty_Temp, aes(x = xmin_Temp, xend = xmax_Temp, y = m_Temp*xmin_Temp + b_Temp , yend = m_Temp*xmax_Temp + b_Temp))  +
   annotate(geom="text", x=xmax_Temp, y=ymax ,hjust=1, label=paste("y = ", m_Temp, "*x", "+", b_Temp)) +  labs(x="Mean annual temperature (°C)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_Temp, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_Temp)) + theme_bw()
+  annotate(geom="text", x=xmax_Temp, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_Temp)) + theme_bw()
 p_Temp
 
 #  ~ Prec
@@ -1167,7 +1127,7 @@ xmax_Prec <- max(na.omit(rawdat$Prec))
 p_Prec <- ggplot(rawdat, aes(x = Prec, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
   geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_Prec], linetype=lty_Prec, aes(x = xmin_Prec, xend = xmax_Prec, y = m_Prec*xmin_Prec + b_Prec , yend = m_Prec*xmax_Prec + b_Prec))  +
   annotate(geom="text", x=xmax_Prec, y=ymax ,hjust=1, label=paste("y = ", m_Prec, "*x", "+", b_Prec)) +  labs(x="Annual precipitation (mm)", y="Log reponse ratio") +
-  annotate(geom="text", x=xmax_Prec, y=ymax-0.2*ymax ,hjust=1, label=paste("R2 =", r_Prec)) + theme_bw()
+  annotate(geom="text", x=xmax_Prec, y=ymax-0.1*ymax ,hjust=1, label=paste("R2 =", r_Prec)) + theme_bw()
 p_Prec
 
 
@@ -1180,7 +1140,57 @@ ggpubr::ggarrange(p_sand, p_silt, p_clay, p_toc, p_ph,
 dev.off()
 
 
-jpeg("Figures/A.4_C regressions with duration less than 15.jpeg", width=12, height=14/4, units="in",res=600)
+
+
+
+
+#  ~ duration < 15 yrs: POC
+ref_duration <- which(dat$resp=="POC" & dat$mod=="duration")[2]
+m_duration <- round(dat$m[ref_duration], roundto)
+b_duration <- round(dat$b[ref_duration], roundto)
+r_duration <- as.character(round(dat$r2[ref_duration], roundto))
+lty_duration <- dat$linetype[ref_duration]
+xmin_duration <- min(na.omit(rawdat$duration))
+xmax_duration <- max(na.omit(rawdat$duration[-which(rawdat$duration>15)]))
+p_duration2poc <- ggplot(rawdat[-which(rawdat$duration>15),], aes(x = duration, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
+  geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_duration], linetype=lty_duration, aes(x = xmin_duration, xend = xmax_duration, y = m_duration*xmin_duration + b_duration , yend = m_duration*xmax_duration + b_duration))  +
+  annotate(geom="text", x=13, y=-0.6 ,hjust=1, label=paste("y = ", m_duration, "*x", "+", b_duration)) +  labs(x="Duration (yrs)", y="Log reponse ratio") +
+  annotate(geom="text", x=13, y=-0.707 ,hjust=1, label=paste("R2 =", r_duration)) + theme_bw() +
+  lims(x=c(0,13), y=c( -0.707,  0.834))
+p_duration2poc
+
+#  ~ duration < 15 yrs: MAOC
+ref_duration <- which(dat$resp=="MAOC" & dat$mod=="duration")[2]
+m_duration <- round(dat$m[ref_duration], roundto)
+b_duration <- round(dat$b[ref_duration], roundto)
+r_duration <- as.character(round(dat$r2[ref_duration], roundto))
+lty_duration <- dat$linetype[ref_duration]
+xmin_duration <- min(na.omit(rawdat$duration))
+xmax_duration <- max(na.omit(rawdat$duration[-which(rawdat$duration>15)]))
+p_duration2maoc <- ggplot(rawdat[-which(rawdat$duration>15),], aes(x = duration, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
+  geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_duration], linetype=lty_duration, aes(x = xmin_duration, xend = xmax_duration, y = m_duration*xmin_duration + b_duration , yend = m_duration*xmax_duration + b_duration))  +
+  annotate(geom="text", x=13, y=-0.6 ,hjust=1, label=paste("y = ", m_duration, "*x", "+", b_duration)) +  labs(x="Duration (yrs)", y="Log reponse ratio") +
+  annotate(geom="text", x=13, y=-0.707 ,hjust=1, label=paste("R2 =", r_duration)) + theme_bw() +
+  lims(x=c(0,13), y=c( -0.707,  0.834))
+p_duration2maoc
+
+#  ~ duration < 15 yrs: SOC
+ref_duration <- which(dat$resp=="SOC" & dat$mod=="duration")[2]
+m_duration <- round(dat$m[ref_duration], roundto)
+b_duration <- round(dat$b[ref_duration], roundto)
+r_duration <- as.character(round(dat$r2[ref_duration], roundto))
+lty_duration <- dat$linetype[ref_duration]
+xmin_duration <- min(na.omit(rawdat$duration))
+xmax_duration <- max(na.omit(rawdat$duration[-which(rawdat$duration>15)]))
+p_duration2soc <- ggplot(rawdat[-which(rawdat$duration>15),], aes(x = duration, y = logRR))+ geom_hline(yintercept=0, size=hlinesize, alpha=hlinealpha) +geom_point(size=psize, alpha=palpha) +
+  geom_segment(inherit.aes=F, lwd=1.5,color=dat$color[ref_duration], linetype=lty_duration, aes(x = xmin_duration, xend = xmax_duration, y = m_duration*xmin_duration + b_duration , yend = m_duration*xmax_duration + b_duration))  +
+  annotate(geom="text", x=13, y=-0.6 ,hjust=1, label=paste("y = ", m_duration, "*x", "+", b_duration)) +  labs(x="Duration (yrs)", y="Log reponse ratio") +
+  annotate(geom="text", x=13, y=-0.707 ,hjust=1, label=paste("R2 =", r_duration)) + theme_bw()+
+  lims(x=c(0,13), y=c( -0.707,  0.834))
+p_duration2soc
+
+
+jpeg("Figures/A.5_C regressions with duration less than 15.jpeg", width=12, height=14/4, units="in",res=600)
 ggpubr::ggarrange(p_duration2poc, p_duration2maoc, p_duration2soc, 
                   labels = LETTERS[1:3],
                   ncol = 3, nrow = 1)
